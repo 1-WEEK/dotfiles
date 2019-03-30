@@ -1,0 +1,4 @@
+anki
+clashx
+phoenix
+racket
