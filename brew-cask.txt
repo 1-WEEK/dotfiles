@@ -1,4 +1,6 @@
 anki
 clashx
+notion
 phoenix
+qmk-toolbox
 racket

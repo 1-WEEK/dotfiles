@@ -79,6 +79,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'stephpy/vim-yaml', {'for': 'yaml'}                        " yaml
   Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}              " coffee
   Plug 'leafgarland/typescript-vim'                               " typescript
+  Plug 'posva/vim-vue'                                          " vue
 
 call plug#end()
 
@@ -101,6 +102,9 @@ let g:airline_powerline_fonts = 1
 
 " pangu
 autocmd BufWritePre *.markdown,*.md,*.text,*.txt,*.wiki,*.cnx call PanGuSpacing()
+
+" scheme or other lisp
+autocmd filetype lisp,scheme setlocal equalprg=scmindent
 
 " devicons
 let g:WebDevIconsOS = 'darwin'
