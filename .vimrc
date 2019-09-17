@@ -53,8 +53,8 @@ endif
 call plug#begin('~/.vim/plugged')
 
   Plug 'vim-airline/vim-airline'
-" Plug 'rhysd/vim-color-spring-night'
-  Plug 'rakr/vim-one'
+  Plug 'rhysd/vim-color-spring-night'
+" Plug 'rakr/vim-one'
   Plug 'tyrannicaltoucan/vim-quantum'
   Plug 'scrooloose/nerdtree'
   Plug 'xuyuanp/nerdtree-git-plugin'
@@ -79,7 +79,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'stephpy/vim-yaml', {'for': 'yaml'}                        " yaml
   Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}              " coffee
   Plug 'leafgarland/typescript-vim'                               " typescript
-  Plug 'posva/vim-vue'                                          " vue
+  Plug 'posva/vim-vue'                                            " vue
 
 call plug#end()
 
@@ -89,14 +89,14 @@ let g:deoplete#enable_at_startup = 1
 " theme
 " let g:spring_night_high_contrast=['gui']
 set background=dark " for the dark version
-" colorscheme spring-night
-colorscheme one
+colorscheme spring-night
+" colorscheme one
 
 " airline
 set laststatus=2
-" let g:airline_theme="spring_night"
+let g:airline_theme="spring_night"
 " let g:airline_theme="one"
-let g:airline_theme = "quantum"
+" let g:airline_theme = "quantum"
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 

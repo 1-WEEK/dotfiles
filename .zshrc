@@ -12,7 +12,7 @@ POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
 POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
 POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="172"
+# POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="172"
 POWERLEVEL9K_OS_ICON_BACKGROUND="60"
 POWERLEVEL9K_OS_ICON_FOREGROUND="white"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
@@ -138,21 +138,24 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias qtalk="printf 'p *(char*)(void(*)())AudioDeviceDuck=0xc3\nq' | lldb -n QQ"
 alias gitbk_serve="gitbook --lrport 9999 --port 31231 serve"
 alias wsdocker="docker run -it --rm -p 20701:20701 woailuoli993/jblse:latest"
+alias rm="trash"
 
 alias ali="ssh bayes@139.196.143.151"
 
 # where proxy
 proxy () {
-  export http_proxy="http://127.0.0.1:8888"
-  export https_proxy="http://127.0.0.1:8888"
-  echo "HTTP Proxy on"
+  export https_proxy=http://127.0.0.1:8888
+  export http_proxy=http://127.0.0.1:8888
+  export all_proxy=socks5://127.0.0.1:8889
+  echo "Proxy on"
 }
 
 # where noproxy
 noproxy () {
   unset http_proxy
   unset https_proxy
-  echo "HTTP Proxy off"
+  unset all_proxy
+  echo "Proxy off"
 }
 
 export ANDROID_SDK_ROOT="/Users/bayes/Library/Android/sdk"
