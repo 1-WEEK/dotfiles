@@ -1,5 +1,6 @@
 anki
 background-music
+calibre
 charles
 chromium
 clashx
@@ -9,4 +10,5 @@ phoenix
 qmk-toolbox
 racket
 vlc
+xld
 zoomus

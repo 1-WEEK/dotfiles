@@ -19,9 +19,8 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(nvm)
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{60}%F{103}%F{110} "
-# POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{60}%F{103}%F{110} "
-# POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{60}>%F{103}>%F{110}> "
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{197}%F{75}%F{226} "
+# POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{60}%F{103}%F{110} "
 
 # ZSH-NVM
 export NVM_DIR="/Users/bayes/.nvm"
@@ -127,7 +126,7 @@ source $ZSH/oh-my-zsh.sh
 export TERM="xterm-256color"
 
 # my alias set
-alias lc="colorls --sd"
+alias lc="colorls --sd --tree=1"
 alias nls="npm list --dep=0"
 alias gsb="git status -sb"
 alias gm="git merge --no-ff"

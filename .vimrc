@@ -6,11 +6,11 @@ set t_Co=256
 set so=10
 set autoindent              " 自动缩进
 set modeline                " 底部的模式行
-set macligatures
 set cursorline
 set nocompatible
 set ttyfast
 set lazyredraw
+set foldlevel=10
 " set leader
 let mapleader="\<space>"
 let g:loaded_matchparen=1
@@ -142,3 +142,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd filetype NERDTree setlocal nolist
+
+" folding for javascript based on ourt syntax file
+augroup javascript_folding
+    au!
+    au FileType javascript setlocal foldmethod=syntax
+augroup END
