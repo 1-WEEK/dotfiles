@@ -2,13 +2,12 @@ anki
 background-music
 calibre
 charles
-chromium
 clashx
 monitorcontrol
-notion
 phoenix
 qmk-toolbox
 racket
+tunnelblick
 vlc
 xld
 zoomus
