@@ -63,7 +63,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'ryanoasis/vim-devicons'
   Plug 'sbdchd/neoformat'
   Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install',
+  \ 'do': 'yarn install --frozen-lockfile',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
   Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'

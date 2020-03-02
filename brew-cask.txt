@@ -11,3 +11,4 @@ tunnelblick
 vlc
 xld
 zoomus
+zotero
