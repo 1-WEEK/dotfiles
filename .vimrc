@@ -65,9 +65,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install --frozen-lockfile',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/nvim-yarp'
+"  Plug 'roxma/vim-hug-neovim-rpc'
 
   " syntax plugins
   Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c', 'cpp']}  " c++ 11/14/17

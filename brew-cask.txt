@@ -3,7 +3,12 @@ background-music
 calibre
 charles
 clashx
+deepl
+font-jetbrains-mono
+inkscape
+magicavoxel
 monitorcontrol
+motrix
 phoenix
 qmk-toolbox
 racket
