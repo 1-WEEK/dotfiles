@@ -28,6 +28,7 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 set list listchars=tab:>-,trail:-,extends:#,nbsp:-
+set backspace=indent,eol,start
 
 filetype plugin indent on   " 打开文件类型支持
 

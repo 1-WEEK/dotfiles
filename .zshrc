@@ -45,7 +45,7 @@ export ZSH=/Users/bayes/.oh-my-zsh
 #else
 #  MY_THEME="refined"
 #fi
-MY_THEME="powerlevel9k/powerlevel9k"
+MY_THEME="powerlevel10k/powerlevel10k"
 ZSH_THEME=$MY_THEME
 
 # Uncomment the following line to use case-sensitive completion.
@@ -137,7 +137,6 @@ alias tree="tree -N"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias qtalk="printf 'p *(char*)(void(*)())AudioDeviceDuck=0xc3\nq' | lldb -n QQ"
 alias gitbk_serve="gitbook --lrport 9999 --port 31231 serve"
-alias wsdocker="docker run -it --rm -p 20701:20701 woailuoli993/jblse:latest"
 alias rm="trash"
 
 alias ali="ssh bayes@139.196.143.151"

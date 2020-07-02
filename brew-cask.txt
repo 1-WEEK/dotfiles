@@ -12,6 +12,7 @@ motrix
 phoenix
 qmk-toolbox
 racket
+steam
 tunnelblick
 vlc
 xld
