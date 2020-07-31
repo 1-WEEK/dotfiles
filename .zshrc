@@ -161,9 +161,6 @@ export ANDROID_SDK_ROOT="/Users/bayes/Library/Android/sdk"
 export ANDROID_HOME="/Users/bayes/Library/Android/sdk"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="/usr/local/sbin:$PATH:$HOME/.rvm/bin:${ANDROID_SDK_ROOT}/tools:${ANDROID_SDK_ROOT}/build-tools/28.0.2:${ANDROID_SDK_ROOT}/platform-tools:$HOME/.build/bin"
+export PATH="/usr/local/opt/ruby/bin:/usr/local/bin:/usr/local/sbin:/.rvm/bin:$HOME/.build/bin:$HOME:$PATH"
 
-export RPC_HOST=192.168.1.22
-export USDT_RPC_HOST=192.168.1.22
-export WEB3_PROVIDER=http://192.168.1.22:8545
 curl "wttr.in/hangzhou?m"
