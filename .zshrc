@@ -157,9 +157,6 @@ noproxy () {
   echo "Proxy off"
 }
 
-export ANDROID_SDK_ROOT="/Users/bayes/Library/Android/sdk"
-export ANDROID_HOME="/Users/bayes/Library/Android/sdk"
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="/usr/local/opt/ruby/bin:/usr/local/bin:/usr/local/sbin:/.rvm/bin:$HOME/.build/bin:$HOME:$PATH"
 
