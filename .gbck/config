@@ -11,6 +11,8 @@
       "o": "karabiner/karabiner.json"
     },
     ["brew-cask.txt", "brew cask list"],
-    "~/.now"
+    "~/.now",
+    "~/.loading/loading.js",
+    "~/.loading/package.json"
   ]
 }
