@@ -23,9 +23,6 @@ POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{197}%F{75}%F{226} "
 # POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{60}%F{103}%F{110} "
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/bayes/.oh-my-zsh
 
@@ -34,12 +31,6 @@ export ZSH=/Users/bayes/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="powerlevel9k/powerlevel9k"
 
-#if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
-#  export DEFAULT_USER="bayes"
-#  MY_THEME="powerlevel9k/powerlevel9k"
-#else
-#  MY_THEME="refined"
-#fi
 MY_THEME="powerlevel10k/powerlevel10k"
 ZSH_THEME=$MY_THEME
 
@@ -133,8 +124,6 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias qtalk="printf 'p *(char*)(void(*)())AudioDeviceDuck=0xc3\nq' | lldb -n QQ"
 alias gitbk_serve="gitbook --lrport 9999 --port 31231 serve"
 alias rm="trash"
-
-alias ali="ssh bayes@139.196.143.151"
 
 # where proxy
 proxy () {
