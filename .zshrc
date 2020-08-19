@@ -1,27 +1,33 @@
 (node ~/.loading/loading.js &)
 
+curl "wttr.in/hangzhou?m"
+
 # Stylizing Powerlevel9k Prompt
-POWERLEVEL9K_MODE='awesome-fontconfig'
-POWERLEVEL9K_APPLE_ICON=""
-POWERLEVEL9K_HOME_ICON=""
-POWERLEVEL9K_FOLDER_ICON=" "
-POWERLEVEL9K_HOME_SUB_ICON=" "
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
-POWERLEVEL9K_DIR_HOME_BACKGROUND="red"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="red"
-POWERLEVEL9K_OS_ICON_BACKGROUND="60"
-# POWERLEVEL9K_OS_ICON_FOREGROUND="white"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(nvm)
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{197}%F{75}%F{226} "
+typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯%F{197}❯%F{226}❯'
+# POWERLEVEL9K_MODE='awesome-fontconfig'
+# POWERLEVEL9K_HOME_ICON=""
+# POWERLEVEL9K_FOLDER_ICON=" "
+# POWERLEVEL9K_HOME_SUB_ICON=" "
+# POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
+# POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
+# POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
+# POWERLEVEL9K_DIR_HOME_BACKGROUND="red"
+# POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="red"
+# POWERLEVEL9K_OS_ICON_BACKGROUND="60"
+# # POWERLEVEL9K_OS_ICON_FOREGROUND="white"
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(nvm)
+# POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+# POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
+# POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{197}%F{75}%F{226} "
 # POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{60}%F{103}%F{110} "
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/bayes/.oh-my-zsh
@@ -144,4 +150,5 @@ noproxy () {
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="/usr/local/opt/ruby/bin:/usr/local/bin:/usr/local/sbin:/.rvm/bin:$HOME/.build/bin:$HOME:$PATH"
 
-curl "wttr.in/hangzhou?m"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

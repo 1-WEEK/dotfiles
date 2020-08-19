@@ -5,6 +5,7 @@
     "~/.vimrc",
     "~/.zshrc",
     "~/.phoenix.js",
+    "~/.p10k.zsh",
     {
       "i": "~/.config/karabiner/karabiner.json",
       "o": "karabiner/karabiner.json"
