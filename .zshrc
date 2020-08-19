@@ -23,11 +23,6 @@ POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=""
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{197}%F{75}%F{226} "
 # POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{60}%F{103}%F{110} "
 
-# ZSH-NVM
-export NVM_DIR="/Users/bayes/.nvm"
-export NVM_LAZY_LOAD=true
-# export NVM_AUTO_USE=true
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -91,7 +86,7 @@ ZSH_THEME=$MY_THEME
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 # plugins=(zsh-autosuggestions git autojump zsh-syntax-highlighting tig zsh-nvm osx zsh-iterm-touchbar npm node git-open thefuck)
-plugins=(git autojump zsh-nvm git-open zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git autojump git-open zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
