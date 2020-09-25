@@ -131,7 +131,7 @@ noproxy () {
 }
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="/usr/local/opt/ruby/bin:/usr/local/bin:/usr/local/sbin:/.rvm/bin:$HOME/.build/bin:$HOME:$PATH"
+export PATH="/usr/local/opt/ruby/bin:/.rvm/bin:$HOME/.build/bin:$HOME:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
