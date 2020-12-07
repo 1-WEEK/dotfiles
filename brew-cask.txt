@@ -5,6 +5,7 @@ charles
 clashx
 deepl
 font-jetbrains-mono
+hiddenbar
 inkscape
 magicavoxel
 monitorcontrol

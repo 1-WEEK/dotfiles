@@ -106,8 +106,6 @@ alias lc="colorls --sd --tree=1"
 alias nls="npm list --dep=0"
 alias gsb="git status -sb"
 alias gm="git merge --no-ff"
-alias oanki="launchctl load ~/Library/LaunchAgents/user.launchkeep.anki.plist"
-alias qanki="launchctl remove user.launchkeep.anki"
 alias tree="tree -N"
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias qtalk="printf 'p *(char*)(void(*)())AudioDeviceDuck=0xc3\nq' | lldb -n QQ"
@@ -132,6 +130,9 @@ noproxy () {
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="/usr/local/opt/ruby/bin:/.rvm/bin:$HOME/.build/bin:$HOME:$PATH"
+export LDFLAGS="-L/usr/local/opt/ncurses/lib"
+export CPPFLAGS="-I/usr/local/opt/ncurses/include"
+export PKG_CONFIG_PATH="/usr/local/opt/ncurses/lib/pkgconfig"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+ #To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
