@@ -55,7 +55,6 @@ call plug#begin('~/.vim/plugged')
 
   Plug 'vim-airline/vim-airline'
   Plug 'rhysd/vim-color-spring-night'
-" Plug 'rakr/vim-one'
   Plug 'tyrannicaltoucan/vim-quantum'
   Plug 'scrooloose/nerdtree'
   Plug 'xuyuanp/nerdtree-git-plugin'
@@ -66,9 +65,8 @@ call plug#begin('~/.vim/plugged')
   Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install --frozen-lockfile',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
-"  Plug 'Shougo/deoplete.nvim'
-"  Plug 'roxma/nvim-yarp'
-"  Plug 'roxma/vim-hug-neovim-rpc'
+  " 自动切换输入法
+  Plug 'ybian/smartim'
 
   " syntax plugins
   Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c', 'cpp']}  " c++ 11/14/17

@@ -111,6 +111,7 @@ alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias qtalk="printf 'p *(char*)(void(*)())AudioDeviceDuck=0xc3\nq' | lldb -n QQ"
 alias gitbk_serve="gitbook --lrport 9999 --port 31231 serve"
 alias rm="trash"
+alias p10k_update="git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull"
 
 # where proxy
 proxy () {
@@ -129,7 +130,11 @@ noproxy () {
 }
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="/usr/local/opt/ruby/bin:/.rvm/bin:$HOME/.build/bin:$HOME:$PATH"
+# Based on `brew --prefix ruby`
+export PATH=/usr/local/opt/ruby/bin:$PATH
+# Based on `gem environment gemdir`
+export PATH=/usr/local/lib/ruby/gems/2.7.0/bin:$PATH
+export PATH="$HOME/.build/bin:$HOME:$PATH"
 export LDFLAGS="-L/usr/local/opt/ncurses/lib"
 export CPPFLAGS="-I/usr/local/opt/ncurses/include"
 export PKG_CONFIG_PATH="/usr/local/opt/ncurses/lib/pkgconfig"
