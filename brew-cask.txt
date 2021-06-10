@@ -4,6 +4,7 @@ calibre
 charles
 clashx
 deepl
+firefox
 font-jetbrains-mono
 inkscape
 magicavoxel
@@ -16,5 +17,4 @@ steam
 tunnelblick
 vlc
 xld
-zoom
 zotero

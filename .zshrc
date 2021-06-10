@@ -112,6 +112,7 @@ alias qtalk="printf 'p *(char*)(void(*)())AudioDeviceDuck=0xc3\nq' | lldb -n QQ"
 alias gitbk_serve="gitbook --lrport 9999 --port 31231 serve"
 alias rm="trash"
 alias p10k_update="git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull"
+alias comic_mv="find . -name "*\.zip" -print0 |  xargs -0 -I {} mv {} ./"
 
 # where proxy
 proxy () {
