@@ -15,8 +15,6 @@ set foldlevel=10
 let mapleader="\<space>"
 let g:loaded_matchparen=1
 
-" set keymap
-
 " 文件编码
 set fenc=utf-8
 set fencs=utf-8,gbk,gb18030,gb2312,cp936,usc-bom,euc-jp
