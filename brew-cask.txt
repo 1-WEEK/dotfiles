@@ -13,6 +13,8 @@ motrix
 phoenix
 qmk-toolbox
 racket
+raycast
+rectangle
 steam
 tunnelblick
 vlc
