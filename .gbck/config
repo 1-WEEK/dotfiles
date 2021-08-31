@@ -13,6 +13,7 @@
     ["brew-cask.txt", "brew list --cask"],
     "~/.now",
     "~/.loading/loading.js",
-    "~/.loading/package.json"
+    "~/.loading/package.json",
+    "~/.notion-enhancer"
   ]
 }
