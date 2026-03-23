@@ -1,0 +1,8 @@
+[ghostty]
+files = { "ghostty/config" = "~/.config/ghostty/config" }
+
+[zsh]
+files = { "zsh/.zshrc" = "~/.zshrc" }
+
+[vim]
+files = { "vim/.vimrc" = "~/.vimrc" }
