@@ -1,0 +1,20 @@
+# 设置背景透明度 (0.0 到 1.0)
+# 0.8 到 0.9 通常是比较平衡的选择
+background-opacity = 0.9
+
+# 设置模糊半径 (建议范围 20-40)
+# 数值越大，毛玻璃效果越明显
+background-blur-radius = 30
+
+# 开启选中即复制
+copy-on-select = true
+
+# 使用 Cmd + hjkl 切换分屏
+keybind = super+h=goto_split:left
+keybind = super+j=goto_split:down
+keybind = super+k=goto_split:up
+keybind = super+l=goto_split:right
+
+
+# theme
+theme = Everforest Dark Hard
