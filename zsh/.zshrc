@@ -36,6 +36,9 @@ if [ -f "$HOME/.openclaw/completions/openclaw.zsh" ]; then
   source "$HOME/.openclaw/completions/openclaw.zsh"
 fi
 
+# opencli completion
+fpath=($HOME/.zsh/completions $fpath)
+
 # cargo
 export PATH="$HOME/.cargo/bin:$PATH"
 
