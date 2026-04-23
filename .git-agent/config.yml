@@ -1,0 +1,11 @@
+hook:
+    - conventional
+scopes:
+    - description: bash scripts and configuration in bash/
+      name: bash
+    - description: ghostty terminal configuration files in ghostty/
+      name: ghostty
+    - description: vim editor configuration files in vim/
+      name: vim
+    - description: zsh shell configuration files in zsh/
+      name: zsh
