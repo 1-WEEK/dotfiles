@@ -68,3 +68,6 @@ eval "$(starship init zsh)"
 
 # mise
 eval "$(mise activate zsh)"
+
+# Keep mise shims ahead of Homebrew in interactive shells too.
+export PATH="$HOME/.local/share/mise/shims:$PATH"

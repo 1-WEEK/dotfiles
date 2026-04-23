@@ -6,3 +6,6 @@ files = { "zsh/.zshrc" = "~/.zshrc" }
 
 [vim]
 files = { "vim/.vimrc" = "~/.vimrc" }
+
+[bash]
+files = { "bash/.bashrc" = "~/.bashrc", "bash/.bash_profile" = "~/.bash_profile" }
