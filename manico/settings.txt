@@ -1,0 +1,8 @@
+overlay-alpha|float|0.4548780487804878
+overlay-border-width|integer|1
+overlay-center-x|float|1.6
+overlay-center-y|float|0.5
+overlay-size-scale|float|0.7
+running-mode|integer|2
+screen-bar-position|integer|1
+skip-welcome-window-v2|boolean|1
