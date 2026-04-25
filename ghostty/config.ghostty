@@ -18,3 +18,4 @@ keybind = super+l=goto_split:right
 
 # theme
 theme = Everforest Dark Hard
+

@@ -1,11 +1,11 @@
-curl "wttr.in/hangzhou?m"
-
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
 plugins=(git autojump zsh-autosuggestions zsh-syntax-highlighting)
 
+# opencli completion
+fpath=(/Users/1-week/.zsh/completions $fpath)
 source $ZSH/oh-my-zsh.sh
 
 # true color
