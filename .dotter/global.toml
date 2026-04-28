@@ -12,3 +12,6 @@ files = { "bash/.bashrc" = "~/.bashrc", "bash/.bash_profile" = "~/.bash_profile"
 
 [manico]
 files = { "manico/sync.sh" = "manico/sync.sh", "manico/settings.txt" = "manico/settings.txt" }
+
+[tmux]
+files = { "tmux/.tmux.conf" = "~/.tmux.conf" }

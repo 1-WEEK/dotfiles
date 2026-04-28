@@ -31,3 +31,13 @@ This script will:
 - **Vim**: `.vimrc`
 - **Ghostty**: Terminal configuration
 - **Manico**: App switcher configuration (via `sync.sh`)
+- **Tmux**: Terminal multiplexer configuration (TPM required)
+
+## Module Specifics
+
+### Tmux & TPM
+1. **Install TPM**:
+   ```bash
+   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+   ```
+2. **Install Plugins**: Press `prefix` + `I` (Capital I) inside tmux to fetch plugins.
