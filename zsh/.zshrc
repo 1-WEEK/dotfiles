@@ -4,70 +4,60 @@ ZSH_THEME="robbyrussell"
 
 plugins=(git autojump zsh-autosuggestions zsh-syntax-highlighting)
 
-# opencli completion
-fpath=(/Users/1-week/.zsh/completions $fpath)
+# zsh completions fpath (must be set before oh-my-zsh sources compinit)
+fpath=($HOME/.zsh/completions $fpath)
 source $ZSH/oh-my-zsh.sh
+
+# OS detection + Homebrew shellenv
+case "$OSTYPE" in
+  darwin*) BREW_PREFIX="/opt/homebrew";          SETUP_OS="macos" ;;
+  linux*)  BREW_PREFIX="/home/linuxbrew/.linuxbrew"; SETUP_OS="linux" ;;
+esac
+[[ -x "$BREW_PREFIX/bin/brew" ]] && eval "$($BREW_PREFIX/bin/brew shellenv)"
 
 # true color
 export TERM="xterm-256color"
 
-# aliases
-alias tmm="/Applications/tinyMediaManager.app/Contents/MacOS/tinyMediaManager"
+# gpg
+export GPG_TTY=$(tty)
+
+# generic aliases (cross-platform)
 alias lc="colorls --sd --tree=1"
 alias nls="npm list --dep=0"
 alias gsb="git status -sb"
 alias gm="git merge --no-ff"
 alias tree="tree -N"
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-alias gitbk_serve="gitbook --lrport 9999 --port 31231 serve"
-alias rm="trash"
 alias mv_comit="find . -name \"*\.zip\" -print0 |  xargs -0 -I {} mv {} ."
-alias localip="ifconfig en0 | grep 'net[ ]' | awk '{print $2}'"
 
-# gpg
-export GPG_TTY=$(tty)
+# macOS-only aliases / PATH / sources
+if [[ "$SETUP_OS" == "macos" ]]; then
+  alias tmm="/Applications/tinyMediaManager.app/Contents/MacOS/tinyMediaManager"
+  alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+  alias gitbk_serve="gitbook --lrport 9999 --port 31231 serve"
+  alias rm="trash"
+  alias localip="ifconfig en0 | grep 'net[ ]' | awk '{print \$2}'"
 
-# 极空间
-export SCRCPY_SERVER_PATH=/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools/scrcpy-server
-export PATH=$PATH:/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools
+  # 极空间
+  export SCRCPY_SERVER_PATH=/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools/scrcpy-server
+  export PATH=$PATH:/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools
 
-# OpenClaw Completion
-if [ -f "$HOME/.openclaw/completions/openclaw.zsh" ]; then
-  source "$HOME/.openclaw/completions/openclaw.zsh"
+  # OpenClaw completion
+  if [ -f "$HOME/.openclaw/completions/openclaw.zsh" ]; then
+    source "$HOME/.openclaw/completions/openclaw.zsh"
+  fi
 fi
 
-# opencli completion
-fpath=($HOME/.zsh/completions $fpath)
-
-# cargo
-export PATH="$HOME/.cargo/bin:$PATH"
-
-# bun completions
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# Added by Antigravity
+# Antigravity
 export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 
 # claude code
 export PATH="$HOME/.local/bin:$PATH"
 
-# pnpm
-export PNPM_HOME="$HOME/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-# startship
-eval "$(starship init zsh)"
-
-# mise
+# mise (must run before starship so prompt sees mise versions)
 eval "$(mise activate zsh)"
 
-# Keep mise shims ahead of Homebrew in interactive shells too.
+# Keep mise shims ahead of Homebrew (CLAUDE.md invariant)
 export PATH="$HOME/.local/share/mise/shims:$PATH"
+
+# starship
+eval "$(starship init zsh)"

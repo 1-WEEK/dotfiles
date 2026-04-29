@@ -4,6 +4,9 @@ files = { "ghostty/config.ghostty" = "~/Library/Application Support/com.mitchell
 [zsh]
 files = { "zsh/.zshrc" = "~/.zshrc" }
 
+[fish]
+files = { "fish/config.fish" = "~/.config/fish/config.fish", "fish/functions" = "~/.config/fish/functions" }
+
 [vim]
 files = { "vim/.vimrc" = "~/.vimrc" }
 
@@ -15,3 +18,6 @@ files = { "manico/sync.sh" = "manico/sync.sh", "manico/settings.txt" = "manico/s
 
 [tmux]
 files = { "tmux/.tmux.conf" = "~/.tmux.conf" }
+
+[mise]
+files = { "mise/config.toml" = "~/.config/mise/config.toml" }

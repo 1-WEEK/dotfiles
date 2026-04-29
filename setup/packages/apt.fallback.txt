@@ -1,0 +1,16 @@
+# Used on Linux when linuxbrew isn't available (e.g. Pi4 armv7).
+# Approximates Brewfile.common via apt; some tools (gemini-cli, dotter, mise,
+# starship, yazi) need separate installers — handled in steps/.
+
+autojump
+fd-find
+fish
+jq
+neofetch
+poppler-utils
+p7zip-full
+ripgrep
+tig
+tmux
+tree
+wget

@@ -1,0 +1,25 @@
+# macOS-only formulae, third-party taps, and casks.
+# Applied after Brewfile.common on macOS profile.
+
+brew "mole"
+brew "pam-reattach"
+brew "trash"
+
+tap "antoniorodr/memo"
+tap "gitagenthq/brew"
+tap "steipete/tap"
+tap "yakitrak/yakitrak"
+
+brew "antoniorodr/memo/memo"
+brew "gitagenthq/brew/git-agent"
+brew "steipete/tap/remindctl"
+brew "steipete/tap/sonoscli"
+brew "yakitrak/yakitrak/obsidian-cli"
+
+cask "copilot-cli"
+cask "font-symbols-only-nerd-font"
+cask "ghostty"
+cask "google-chrome"
+cask "obsidian"
+cask "only-switch"
+cask "thaw"
