@@ -71,6 +71,26 @@ produces no changes.
 - macOS-only / tap / cask: `setup/packages/Brewfile.macos`.
 - apt (only used for armv7 fallback): `setup/packages/apt.fallback.txt`.
 
+## When to update this repo after installing something
+
+Rule of thumb: **if you want it on another machine too, commit it here.**
+
+| You did | Update |
+|---------|--------|
+| `brew install X` (cross-platform) | `packages/Brewfile.common` |
+| `brew install X` mac-only / cask / tap | `packages/Brewfile.macos` |
+| `mise use -g X@v` | edit `~/.config/mise/config.toml` (it's a symlink) → commit `mise/config.toml` |
+| `fisher install X` | `fish/fish_plugins` is auto-updated by fisher → commit it |
+| Edit `.zshrc` / `config.fish` / `.bashrc` / `.tmux.conf` / `.vimrc` / ghostty | They're symlinks — edit directly, then commit |
+| New vim Plug / tmux @plugin line | Just add it to the rc; step 50 / 55 picks it up |
+| New OMZ custom plugin | Add a `clone_or_pull` line to `steps/30-shells.sh` |
+| `curl … | sh` installer not coverable by mise | New `steps/NN-name.sh` |
+| New dotter module | Edit `.dotter/global.toml`, add to all `profiles/*.sh` `PROFILE_DOTTER_PACKAGES`, append target path to `DEPLOY_TARGETS` in `steps/70-dotter-deploy.sh` |
+
+Skip for: one-off project deps, throwaway experiments, machine-specific secrets/keys (use a local rc file outside the repo).
+
+After committing, sanity check: `brew bundle check --file=…`, `mise install`, and `git status` to catch indirect symlink writes you might miss.
+
 ## Verification
 
 ```sh
