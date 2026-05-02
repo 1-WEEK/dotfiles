@@ -13,6 +13,7 @@ DEPLOY_TARGETS=(
   "$HOME/.vimrc"
   "$HOME/.tmux.conf"
   "$HOME/.config/fish/config.fish"
+  "$HOME/.config/fish/fish_plugins"
   "$HOME/.config/mise/config.toml"
   "$HOME/Library/Application Support/com.mitchellh.ghostty/config.ghostty"
 )

@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
-# oh-my-zsh + custom plugins. Optionally chsh to fish.
+# oh-my-zsh + custom plugins, fisher + fish plugins, optional chsh to fish.
 
 ZSH_CUSTOM_DIR="$HOME/.oh-my-zsh/custom"
+FISHER_FN="$HOME/.config/fish/functions/fisher.fish"
 
 step_check() {
   [ -d "$HOME/.oh-my-zsh" ] \
     && [ -d "$ZSH_CUSTOM_DIR/plugins/zsh-autosuggestions" ] \
-    && [ -d "$ZSH_CUSTOM_DIR/plugins/zsh-syntax-highlighting" ]
+    && [ -d "$ZSH_CUSTOM_DIR/plugins/zsh-syntax-highlighting" ] \
+    && { ! command -v fish >/dev/null 2>&1 || [ -f "$FISHER_FN" ]; }
 }
 
 step_run() {
@@ -22,6 +24,21 @@ step_run() {
     "$ZSH_CUSTOM_DIR/plugins/zsh-autosuggestions"
   clone_or_pull https://github.com/zsh-users/zsh-syntax-highlighting \
     "$ZSH_CUSTOM_DIR/plugins/zsh-syntax-highlighting"
+
+  # fisher + fish plugins (reads fish/fish_plugins manifest)
+  if command -v fish >/dev/null 2>&1; then
+    if [ ! -f "$FISHER_FN" ]; then
+      log_info "Installing fisher"
+      run fish -c '
+        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source
+        fisher install jorgebucaran/fisher
+      '
+    else
+      log_skip "fisher present"
+    fi
+    log_info "Installing fish plugins from fish_plugins manifest"
+    run fish -c 'fisher update'
+  fi
 
   # chsh to fish if installed and not already the login shell
   if command -v fish >/dev/null 2>&1; then

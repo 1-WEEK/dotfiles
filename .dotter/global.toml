@@ -5,7 +5,7 @@ files = { "ghostty/config.ghostty" = "~/Library/Application Support/com.mitchell
 files = { "zsh/.zshrc" = "~/.zshrc" }
 
 [fish]
-files = { "fish/config.fish" = "~/.config/fish/config.fish", "fish/functions" = "~/.config/fish/functions" }
+files = { "fish/config.fish" = "~/.config/fish/config.fish", "fish/functions" = "~/.config/fish/functions", "fish/fish_plugins" = "~/.config/fish/fish_plugins" }
 
 [vim]
 files = { "vim/.vimrc" = "~/.vimrc" }
