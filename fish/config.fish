@@ -17,9 +17,6 @@ test -x $BREW_PREFIX/bin/brew; and $BREW_PREFIX/bin/brew shellenv fish | source
 fish_add_path $HOME/.antigravity/antigravity/bin
 fish_add_path $HOME/.local/bin
 
-# Keep mise shims ahead of Homebrew (matches the .zshrc behavior).
-fish_add_path $HOME/.local/share/mise/shims
-
 # --- env ---
 set -gx TERM xterm-256color
 
@@ -27,6 +24,11 @@ set -gx TERM xterm-256color
 if type -q mise
     mise activate fish | source
 end
+
+# Keep mise shims ahead of Homebrew (CLAUDE.md invariant).
+# --move relocates the path if it's already in PATH; plain fish_add_path
+# would silently leave it after /opt/homebrew/bin.
+fish_add_path --prepend --move $HOME/.local/share/mise/shims
 
 # macOS-only env
 if test "$SETUP_OS" = macos
