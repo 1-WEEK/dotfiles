@@ -1,9 +1,25 @@
 background-blur = macos-glass-regular
 background-opacity = 0.7
 
+# === Shell 集成 ===
+shell-integration = detect
+window-inherit-working-directory = true
+shell-integration-features = cursor,sudo,title
 
-# 开启选中即复制
-copy-on-select = true
+# === 光标 & 鼠标 ===
+cursor-opacity = 0.8
+mouse-hide-while-typing = true
+copy-on-select = clipboard
+
+# === 窗口 & 状态 ===
+window-theme = auto
+window-save-state = always
+macos-titlebar-style = transparent
+
+# === 安全 & 缓冲 ===
+clipboard-paste-protection = true
+scrollback-limit = 8388608
+
 
 # 使用 Cmd + hjkl 切换分屏
 keybind = super+h=goto_split:left
@@ -17,5 +33,6 @@ theme = Everforest Dark Hard
 
 font-family = Cartograph CF
 font-family = Zonz's 新黑（传承正形）
-
+font-thicken = true
+font-thicken-strength = 1
 
