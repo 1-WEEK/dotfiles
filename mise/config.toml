@@ -9,6 +9,7 @@ default_packages_file = "~/.default-npm-packages"
 [tools]
 aube = "latest"
 bun = "latest"
+"cargo:abtop" = "latest"
 "gem:colorls" = "latest"
 node = "lts"
 "npm:clawhub" = "latest"
