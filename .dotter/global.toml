@@ -2,7 +2,7 @@
 files = { "ghostty/config.ghostty" = "~/Library/Application Support/com.mitchellh.ghostty/config.ghostty" }
 
 [zsh]
-files = { "zsh/.zshrc" = "~/.zshrc" }
+files = { "zsh/.zshrc" = "~/.zshrc", "zsh/.zprofile" = "~/.zprofile" }
 
 [fish]
 files = { "fish/config.fish" = "~/.config/fish/config.fish", "fish/functions" = "~/.config/fish/functions", "fish/fish_plugins" = "~/.config/fish/fish_plugins" }

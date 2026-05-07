@@ -8,6 +8,7 @@ LOCAL_TOML="$DOTFILES_ROOT/.dotter/local.toml"
 # Keep in sync with .dotter/global.toml.
 DEPLOY_TARGETS=(
   "$HOME/.zshrc"
+  "$HOME/.zprofile"
   "$HOME/.bashrc"
   "$HOME/.bash_profile"
   "$HOME/.vimrc"
