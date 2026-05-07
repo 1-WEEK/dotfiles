@@ -16,4 +16,4 @@ PROFILE_STEPS=(
   80-manico
 )
 
-PROFILE_DOTTER_PACKAGES='["ghostty", "zsh", "fish", "vim", "bash", "tmux", "manico", "mise"]'
+PROFILE_DOTTER_PACKAGES='["ghostty", "zsh", "fish", "vim", "bash", "tmux", "mise"]'
