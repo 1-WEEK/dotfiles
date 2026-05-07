@@ -3,9 +3,16 @@
 [settings.ruby]
 compile = false
 
+[settings.node]
+default_packages_file = "~/.default-npm-packages"
+
 [tools]
-bun = "1.3"
+aube = "latest"
+bun = "latest"
 "gem:colorls" = "latest"
 node = "lts"
+"npm:clawhub" = "latest"
+"npm:@jackwener/opencli" = "latest"
+"npm:@google/gemini-cli" = "latest"
 ruby = "latest"
 rust = "latest"
