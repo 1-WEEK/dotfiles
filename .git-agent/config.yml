@@ -1,11 +1,21 @@
 hook:
     - conventional
 scopes:
-    - description: bash scripts and configuration in bash/
+    - description: bash shell scripts, profiles, and init files in bash/
       name: bash
+    - description: fish shell configuration and functions in fish/
+      name: fish
     - description: ghostty terminal configuration files in ghostty/
       name: ghostty
+    - description: manico sync script and settings in manico/
+      name: manico
+    - description: mise tool manager config in mise/
+      name: mise
+    - description: setup bootstrap, profiles, steps, and package files in setup/
+      name: setup
+    - description: tmux session and pane configuration in tmux/
+      name: tmux
     - description: vim editor configuration files in vim/
       name: vim
-    - description: zsh shell configuration files in zsh/
+    - description: zsh shell profiles and rc files in zsh/
       name: zsh
