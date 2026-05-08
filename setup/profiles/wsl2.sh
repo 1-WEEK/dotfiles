@@ -2,16 +2,16 @@
 # WSL2 Ubuntu 24 profile (assumes amd64 or arm64; both supported by linuxbrew).
 
 PROFILE_STEPS=(
-  00-prereqs
-  10-homebrew
-  20-brew-common
-  25-claude-code
-  30-shells
-  40-mise-tools
-  60-dotter
-  70-dotter-deploy
-  71-vim-plug
-  72-tmux-tpm
+  00-install-prereqs
+  10-install-homebrew
+  20-install-brew-common
+  25-install-claude
+  30-setup-shells
+  40-install-mise-tools
+  60-install-dotter
+  70-deploy-dotfiles
+  71-setup-vim
+  72-setup-tmux
 )
 
 PROFILE_DOTTER_PACKAGES='["zsh", "fish", "vim", "bash", "tmux", "mise"]'

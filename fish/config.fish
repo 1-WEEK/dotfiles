@@ -40,6 +40,21 @@ end
 # Interactive-only
 # ============================================================
 if status is-interactive
+    # SSH Agent Management
+    # macOS manages this automatically via Keychain. For Linux/WSL2, we persist it.
+    if not set -q SSH_AUTH_SOCK
+        set -l agent_file /tmp/ssh-agent-(whoami).fish
+        if test -f $agent_file
+            source $agent_file > /dev/null
+        end
+
+        # If the agent is not running, start a new one
+        if not ps -p "$SSH_AGENT_PID" > /dev/null 2>&1
+            ssh-agent -c | sed 's/^setenv/set -xg/' > $agent_file
+            source $agent_file > /dev/null
+        end
+    end
+
     set -gx GPG_TTY (tty)
 
     # autojump (replaces the oh-my-zsh autojump plugin)
