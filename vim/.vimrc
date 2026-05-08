@@ -86,7 +86,7 @@ let g:deoplete#enable_at_startup = 1
 " theme
 " let g:spring_night_high_contrast=['gui']
 set background=dark " for the dark version
-colorscheme spring-night
+silent! colorscheme spring-night
 " colorscheme one
 
 " airline
