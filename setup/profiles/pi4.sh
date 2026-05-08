@@ -11,10 +11,10 @@ if [ "$SETUP_HAS_BREW_TARGET" = "1" ]; then
     25-claude-code
     30-shells
     40-mise-tools
-    50-vim-plug
-    55-tmux-tpm
     60-dotter
     70-dotter-deploy
+    71-vim-plug
+    72-tmux-tpm
   )
 else
   PROFILE_STEPS=(
@@ -23,10 +23,10 @@ else
     25-claude-code
     30-shells
     40-mise-tools
-    50-vim-plug
-    55-tmux-tpm
     60-dotter
     70-dotter-deploy
+    71-vim-plug
+    72-tmux-tpm
   )
 fi
 
