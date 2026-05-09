@@ -1,3 +1,7 @@
+# Global mise tool versions.
+# Philosophy: everything that can be version-locked by mise goes here.
+# See CLAUDE.md → "Environment management philosophy" for the full rules.
+
 [settings]
 
 [settings.ruby]
@@ -23,3 +27,7 @@ rust = "latest"
 "npm:taze" = "latest"
 "npm:defuddle" = "latest"
 cargo-binstall = "latest"
+uv = "latest"
+python = "3.13"
+pipx = "latest"
+"pipx:kimi-cli" = "latest"

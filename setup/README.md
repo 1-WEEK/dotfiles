@@ -80,6 +80,9 @@ Rule of thumb: **if you want it on another machine too, commit it here.**
 | `brew install X` (cross-platform) | `packages/Brewfile.common` |
 | `brew install X` mac-only / cask / tap | `packages/Brewfile.macos` |
 | `mise use -g X@v` | edit `~/.config/mise/config.toml` (it's a symlink) → commit `mise/config.toml` |
+| `mise use -g uv` / `mise use -g python@x.xx` | same as above — uv and python are runtime versions, belong in mise |
+| `mise use -g pipx:<python-cli>` | same as above — Python CLI tools must go through mise so they're locked |
+| `uv tool install <name>` (standalone) | **Don't.** Convert to `mise use -g pipx:<name>` so the tool is tracked in `mise/config.toml` |
 | `fisher install X` | `fish/fish_plugins` is auto-updated by fisher → commit it |
 | Edit `.zshrc` / `config.fish` / `.bashrc` / `.tmux.conf` / `.vimrc` / ghostty | They're symlinks — edit directly, then commit |
 | New vim Plug / tmux @plugin line | Just add it to the rc; step 50 / 55 picks it up |
