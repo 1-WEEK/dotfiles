@@ -6,6 +6,9 @@ compile = false
 [settings.node]
 default_packages_file = "~/.default-npm-packages"
 
+[settings.npm]
+bun = true
+
 [tools]
 aube = "latest"
 bun = "latest"
@@ -17,3 +20,5 @@ node = "lts"
 "npm:@google/gemini-cli" = "latest"
 ruby = "latest"
 rust = "latest"
+"npm:taze" = "latest"
+"npm:defuddle" = "latest"
