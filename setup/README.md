@@ -38,20 +38,35 @@ cd ~/.dotfiles
 Each numeric prefix is a discrete component. Run a single one with `--only=NN`.
 
 ```
-00-prereqs           curl / git / build tools
-10-homebrew          brew (mac) or linuxbrew (linux x86_64/arm64)
-20-brew-common       packages/Brewfile.common
-21-brew-macos        packages/Brewfile.macos (mac only)
-22-apt-fallback      armv7 / no-brew Linux fallback via apt
-25-claude-code       curl https://claude.ai/install.sh | bash
-30-shells            oh-my-zsh + zsh-autosuggestions / -syntax-highlighting; chsh fish
-40-mise-tools        mise install (per mise/config.toml)
-50-vim-plug          vim-plug + :PlugInstall
-55-tmux-tpm          TPM clone + plugin install
-60-dotter            ensure dotter on PATH
-70-dotter-deploy     write .dotter/local.toml from profile + dotter deploy
-80-manico            mac only — sync.sh import if Manico.app present
+00-install-prereqs   curl / git / build tools
+10-install-homebrew  brew (mac) or linuxbrew (linux x86_64/arm64)
+20-install-brew-common  packages/Brewfile.common
+21-install-brew-macos   packages/Brewfile.macos (mac only)
+22-install-apt-fallback armv7 / no-brew Linux fallback via apt
+25-install-claude    curl https://claude.ai/install.sh | bash
+30-setup-shells      oh-my-zsh + zsh-autosuggestions / -syntax-highlighting; chsh fish
+40-install-mise-tools  mise install (per mise/config.toml)
+60-install-dotter    ensure dotter on PATH
+70-deploy-dotfiles   write .dotter/local.toml from profile + dotter deploy
+71-setup-vim         vim-plug + :PlugInstall
+72-setup-tmux        TPM clone + plugin install + catppuccin PR #577 patch
+80-setup-manico      mac only — sync.sh import if Manico.app present
 ```
+
+### tmux / catppuccin patch (step 72)
+
+After tpm installs the pinned `catppuccin/tmux#v2.1.3`, the step runs
+`tmux/patch-catppuccin-577.py` to backport
+[PR #577](https://github.com/catppuccin/tmux/pull/577) onto the vendored
+`catppuccin_tmux.conf`. The patch is needed because the plugin's `rounded`
+window status style uses `#[fg=...,reverse]<glyph>` for separators, which
+forces terminal cell opacity to 1.0 and breaks `@catppuccin_status_background
+"none"`. Runtime overrides in `.tmux.conf` can't fix this (the plugin bakes
+the separator vars into `window-status-format` via `set -agF` at load time),
+so patching the source file is the only clean path until the pin can be
+bumped past a release containing PR #577. The script is idempotent and
+`step_check` verifies the patch marker, so re-running `--only=72` after any
+plugin reinstall reapplies it.
 
 ## Idempotency
 
