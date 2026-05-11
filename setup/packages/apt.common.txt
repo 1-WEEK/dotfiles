@@ -3,5 +3,6 @@ ca-certificates
 curl
 file
 git
+keychain
 locales
 unzip

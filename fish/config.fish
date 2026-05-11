@@ -41,18 +41,11 @@ end
 # ============================================================
 if status is-interactive
     # SSH Agent Management
-    # macOS manages this automatically via Keychain. For Linux/WSL2, we persist it.
-    if not set -q SSH_AUTH_SOCK
-        set -l agent_file /tmp/ssh-agent-(whoami).fish
-        if test -f $agent_file
-            source $agent_file > /dev/null
-        end
-
-        # If the agent is not running, start a new one
-        if not ps -p "$SSH_AGENT_PID" > /dev/null 2>&1
-            ssh-agent -c | sed 's/^setenv/set -xg/' > $agent_file
-            source $agent_file > /dev/null
-        end
+    # macOS uses system Keychain automatically. Linux/WSL2 uses keychain to persist across sessions.
+    if test "$SETUP_OS" = linux; and type -q keychain
+        keychain --quiet ~/.ssh/id_ed25519
+        set -l kc_file ~/.keychain/(hostname -s)-fish
+        test -f $kc_file; and source $kc_file
     end
 
     set -gx GPG_TTY (tty)
