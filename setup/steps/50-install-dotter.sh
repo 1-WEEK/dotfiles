@@ -15,7 +15,7 @@ step_run() {
     log_info "Installing dotter via cargo"
     run cargo install dotter
   else
-    log_error "dotter not installed and no cargo available; install Rust then re-run --only=60-dotter"
+    log_error "dotter not installed and no cargo available; install Rust then re-run --only=50-dotter"
     return 1
   fi
 }

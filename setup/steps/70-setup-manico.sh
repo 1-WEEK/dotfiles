@@ -14,7 +14,7 @@ step_run() {
     return 0
   fi
   if [ ! -d "/Applications/Manico.app" ]; then
-    log_warn "Manico.app not found in /Applications. Install from https://manico.im/ then re-run --only=80-manico"
+    log_warn "Manico.app not found in /Applications. Install from https://manico.im/ then re-run --only=70-manico"
     return 0
   fi
   if [ -x "$DOTFILES_ROOT/manico/sync.sh" ]; then

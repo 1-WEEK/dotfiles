@@ -46,11 +46,11 @@ Each numeric prefix is a discrete component. Run a single one with `--only=NN`.
 25-install-claude    curl https://claude.ai/install.sh | bash
 30-setup-shells      oh-my-zsh + zsh-autosuggestions / -syntax-highlighting; chsh fish
 40-install-mise-tools  mise install (per mise/config.toml)
-60-install-dotter    ensure dotter on PATH
-70-deploy-dotfiles   write .dotter/local.toml from profile + dotter deploy
-71-setup-vim         vim-plug + :PlugInstall
-72-setup-tmux        TPM clone + plugin install + catppuccin PR #577 patch
-80-setup-manico      mac only — sync.sh import if Manico.app present
+50-install-dotter    ensure dotter on PATH
+60-deploy-dotfiles   write .dotter/local.toml from profile + dotter deploy
+61-setup-vim         vim-plug + :PlugInstall
+62-setup-tmux        TPM clone + plugin install + catppuccin PR #577 patch
+70-setup-manico      mac only — sync.sh import if Manico.app present
 ```
 
 ### tmux / catppuccin patch (step 72)
@@ -65,7 +65,7 @@ forces terminal cell opacity to 1.0 and breaks `@catppuccin_status_background
 the separator vars into `window-status-format` via `set -agF` at load time),
 so patching the source file is the only clean path until the pin can be
 bumped past a release containing PR #577. The script is idempotent and
-`step_check` verifies the patch marker, so re-running `--only=72` after any
+`step_check` verifies the patch marker, so re-running `--only=62` after any
 plugin reinstall reapplies it.
 
 ## Idempotency
@@ -100,10 +100,10 @@ Rule of thumb: **if you want it on another machine too, commit it here.**
 | `uv tool install <name>` (standalone) | **Don't.** Convert to `mise use -g pipx:<name>` so the tool is tracked in `mise/config.toml` |
 | `fisher install X` | `fish/fish_plugins` is auto-updated by fisher → commit it |
 | Edit `.zshrc` / `config.fish` / `.bashrc` / `.tmux.conf` / `.vimrc` / ghostty | They're symlinks — edit directly, then commit |
-| New vim Plug / tmux @plugin line | Just add it to the rc; step 50 / 55 picks it up |
+| New vim Plug / tmux @plugin line | Just add it to the rc; step 61 / 62 picks it up |
 | New OMZ custom plugin | Add a `clone_or_pull` line to `steps/30-shells.sh` |
 | `curl … | sh` installer not coverable by mise | New `steps/NN-name.sh` |
-| New dotter module | Edit `.dotter/global.toml`, add to all `profiles/*.sh` `PROFILE_DOTTER_PACKAGES`, append target path to `DEPLOY_TARGETS` in `steps/70-dotter-deploy.sh` |
+| New dotter module | Edit `.dotter/global.toml`, add to all `profiles/*.sh` `PROFILE_DOTTER_PACKAGES`, append target path to `DEPLOY_TARGETS` in `steps/60-deploy-dotfiles.sh` |
 
 Skip for: one-off project deps, throwaway experiments, machine-specific secrets/keys (use a local rc file outside the repo).
 

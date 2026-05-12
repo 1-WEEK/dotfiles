@@ -19,6 +19,6 @@ step_run() {
     log_info "Running :PlugInstall (headless)"
     run vim +PlugInstall +qall
   else
-    log_warn "vim not on PATH; install vim then re-run --only=50-vim-plug"
+    log_warn "vim not on PATH; install vim then re-run --only=61-vim"
   fi
 }
