@@ -11,3 +11,6 @@ esac
 [ -f "$HOME/.orbstack/shell/init.zsh" ] && source "$HOME/.orbstack/shell/init.zsh" 2>/dev/null
 
 command -v mise >/dev/null 2>&1 && eval "$(mise activate zsh)"
+# >>> Nowledge Mem PATH >>>
+export PATH="$HOME/.local/bin:$PATH"
+# <<< Nowledge Mem PATH <<<
