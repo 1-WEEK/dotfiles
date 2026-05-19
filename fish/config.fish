@@ -48,6 +48,15 @@ if status is-interactive
         test -f $kc_file; and source $kc_file
     end
 
+   # gnome-keyring secrets
+    if test "$SETUP_OS" = linux
+        if type -q gnome-keyring-daemon
+            if not pgrep -u (id -u) -x gnome-keyring-daemon >/dev/null
+                gnome-keyring-daemon --start --components=secrets --daemonize >/dev/null 2>&1
+            end
+        end
+    end
+
     set -gx GPG_TTY (tty)
 
     # autojump (replaces the oh-my-zsh autojump plugin)
