@@ -21,6 +21,23 @@ export TERM="xterm-256color"
 # gpg
 export GPG_TTY=$(tty)
 
+# SSH Agent Management
+# macOS uses system Keychain automatically. Linux/WSL2 uses keychain to persist across sessions.
+if [[ "$SETUP_OS" == "linux" ]] && command -v keychain >/dev/null 2>&1; then
+  keychain --quiet ~/.ssh/id_ed25519
+  kc_file="$HOME/.keychain/$(hostname -s)-zsh"
+  [[ -f "$kc_file" ]] && source "$kc_file"
+fi
+
+# gnome-keyring secrets
+if [[ "$SETUP_OS" == "linux" ]]; then
+  if command -v gnome-keyring-daemon >/dev/null 2>&1; then
+    if [[ -z "$GNOME_KEYRING_CONTROL" ]]; then
+      gnome-keyring-daemon --start --components=secrets --daemonize >/dev/null 2>&1
+    fi
+  fi
+fi
+
 # generic aliases (cross-platform)
 alias lc="colorls --sd --tree=1"
 alias nls="npm list --dep=0"
