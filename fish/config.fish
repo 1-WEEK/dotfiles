@@ -51,7 +51,7 @@ if status is-interactive
    # gnome-keyring secrets
     if test "$SETUP_OS" = linux
         if type -q gnome-keyring-daemon
-            if not pgrep -u (id -u) -x gnome-keyring-daemon >/dev/null
+            if test -z "$GNOME_KEYRING_CONTROL"
                 gnome-keyring-daemon --start --components=secrets --daemonize >/dev/null 2>&1
             end
         end
