@@ -5,6 +5,8 @@
 autojump
 fd-find
 fish
+gnome-keyring
+keychain
 jq
 neofetch
 poppler-utils
