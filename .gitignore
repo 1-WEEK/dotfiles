@@ -64,3 +64,4 @@ tags
 .dotter/cache.toml
 .dotter/cache/
 .antigravitycli/
+.alma-snapshots/
