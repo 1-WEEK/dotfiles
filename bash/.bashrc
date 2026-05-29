@@ -7,8 +7,12 @@ case "$OSTYPE" in
 esac
 [[ -x "$BREW_PREFIX/bin/brew" ]] && eval "$($BREW_PREFIX/bin/brew shellenv)"
 
-# ~/.local/bin (Claude Code etc.)
+# PATH
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+
+# true color
+export TERM="xterm-256color"
 
 # mise (always; matches zsh/fish)
 command -v mise >/dev/null 2>&1 && eval "$(mise activate bash)"
@@ -16,10 +20,28 @@ command -v mise >/dev/null 2>&1 && eval "$(mise activate bash)"
 # Keep mise shims ahead of Homebrew (CLAUDE.md invariant)
 export PATH="$HOME/.local/share/mise/shims:$PATH"
 
-# SSH Agent Management + gnome-keyring (interactive only)
-# macOS uses system Keychain automatically. Linux/WSL2 uses keychain to persist across sessions.
+# macOS remote SSH sessions: Keychain agent socket isn't forwarded to SSH sessions
+if [[ "$SETUP_OS" == "macos" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+  export SSH_AUTH_SOCK="$HOME/.ssh/ssh-agent.sock"
+  /usr/bin/ssh-add -l >/dev/null 2>&1
+  if [[ $? -eq 2 ]]; then
+    rm -f "$SSH_AUTH_SOCK"
+    /usr/bin/ssh-agent -a "$SSH_AUTH_SOCK" >/dev/null 2>&1
+  fi
+  _fp=$(ssh-keygen -l -E sha256 -f ~/.ssh/id_ed25519.pub 2>/dev/null | awk '{print $2}')
+  if [[ -n "$_fp" ]] && ! /usr/bin/ssh-add -l 2>/dev/null | grep -qF "$_fp"; then
+    /usr/bin/ssh-add --apple-load-keychain ~/.ssh/id_ed25519 >/dev/null 2>&1
+  fi
+  unset _fp
+fi
+
+# Interactive-only
 case $- in
   *i*)
+    export GPG_TTY=$(tty)
+
+    # SSH Agent Management (Linux only — macOS remote SSH sessions handled above)
+    # Linux/WSL2 uses keychain to persist across sessions.
     if [[ "$SETUP_OS" == "linux" ]] && command -v keychain >/dev/null 2>&1; then
       keychain --quiet ~/.ssh/id_ed25519
       kc_file="$HOME/.keychain/$(hostname -s)-bash"
@@ -31,10 +53,35 @@ case $- in
         gnome-keyring-daemon --start --components=secrets --daemonize >/dev/null 2>&1
       fi
     fi
-    ;;
-esac
 
-# starship (interactive only)
-case $- in
-  *i*) command -v starship >/dev/null 2>&1 && eval "$(starship init bash)" ;;
+    # autojump
+    [[ -f "$BREW_PREFIX/etc/profile.d/autojump.sh" ]] && source "$BREW_PREFIX/etc/profile.d/autojump.sh"
+
+    # starship
+    command -v starship >/dev/null 2>&1 && eval "$(starship init bash)"
+
+    # generic aliases (cross-platform)
+    alias lc="colorls --sd --tree=1"
+    alias nls="npm list --dep=0"
+    alias gsb="git status -sb"
+    alias gm="git merge --no-ff"
+    alias tree="tree -N"
+    alias mv_comit='find . -name "*.zip" -print0 | xargs -0 -I {} mv {} .'
+
+    # macOS-only aliases / PATH / sources
+    if [[ "$SETUP_OS" == "macos" ]]; then
+      export SCRCPY_SERVER_PATH=/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools/scrcpy-server
+      export PATH=$PATH:/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools
+
+      alias tmm="/Applications/tinyMediaManager.app/Contents/MacOS/tinyMediaManager"
+      alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+      alias gitbk_serve="gitbook --lrport 9999 --port 31231 serve"
+      alias rm="trash"
+      alias localip="ifconfig en0 | grep 'net ' | awk '{print \$2}'"
+
+      if [ -f "$HOME/.openclaw/completions/openclaw.bash" ]; then
+        source "$HOME/.openclaw/completions/openclaw.bash"
+      fi
+    fi
+    ;;
 esac

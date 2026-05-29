@@ -21,12 +21,26 @@ export TERM="xterm-256color"
 # gpg
 export GPG_TTY=$(tty)
 
-# SSH Agent Management
-# macOS uses system Keychain automatically. Linux/WSL2 uses keychain to persist across sessions.
+# SSH Agent Management (Linux only — macOS remote SSH sessions handled above)
 if [[ "$SETUP_OS" == "linux" ]] && command -v keychain >/dev/null 2>&1; then
   keychain --quiet ~/.ssh/id_ed25519
   kc_file="$HOME/.keychain/$(hostname -s)-zsh"
   [[ -f "$kc_file" ]] && source "$kc_file"
+fi
+
+# macOS remote SSH sessions: Keychain agent socket isn't forwarded to SSH sessions
+if [[ "$SETUP_OS" == "macos" ]] && [[ -n "$SSH_CONNECTION" ]]; then
+  export SSH_AUTH_SOCK="$HOME/.ssh/ssh-agent.sock"
+  /usr/bin/ssh-add -l >/dev/null 2>&1
+  if [[ $? -eq 2 ]]; then
+    rm -f "$SSH_AUTH_SOCK"
+    /usr/bin/ssh-agent -a "$SSH_AUTH_SOCK" >/dev/null 2>&1
+  fi
+  _fp=$(ssh-keygen -l -E sha256 -f ~/.ssh/id_ed25519.pub 2>/dev/null | awk '{print $2}')
+  if [[ -n "$_fp" ]] && ! /usr/bin/ssh-add -l 2>/dev/null | grep -qF "$_fp"; then
+    /usr/bin/ssh-add --apple-load-keychain ~/.ssh/id_ed25519 >/dev/null 2>&1
+  fi
+  unset _fp
 fi
 
 # gnome-keyring secrets
