@@ -60,7 +60,11 @@ case $- in
     # starship
     command -v starship >/dev/null 2>&1 && eval "$(starship init bash)"
 
+    # generic env
+    export EZA_ICONS_AUTO=1
+
     # generic aliases (cross-platform)
+    alias ls="eza"
     alias lc="colorls --sd --tree=1"
     alias nls="npm list --dep=0"
     alias gsb="git status -sb"

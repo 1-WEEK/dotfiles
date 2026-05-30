@@ -21,3 +21,6 @@ files = { "tmux/.tmux.conf" = "~/.tmux.conf" }
 
 [mise]
 files = { "mise/config.toml" = "~/.config/mise/config.toml" }
+
+[eza]
+files = { "eza/theme.yml" = "~/.config/eza/theme.yml" }
