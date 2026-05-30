@@ -83,7 +83,11 @@ if status is-interactive
         starship init fish | source
     end
 
+    # --- generic env ---
+    set -gx EZA_ICONS_AUTO 1
+
     # --- generic aliases (cross-platform) ---
+    alias ls="eza"
     alias lc="colorls --sd --tree=1"
     alias nls="npm list --dep=0"
     alias gsb="git status -sb"
