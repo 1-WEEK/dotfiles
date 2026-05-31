@@ -3,6 +3,7 @@
 # starship, yazi) need separate installers — handled in steps/.
 
 autojump
+eza
 fd-find
 fish
 gnome-keyring

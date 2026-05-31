@@ -3,6 +3,7 @@
 
 brew "autojump"
 brew "dotter"
+brew "eza"
 brew "fd"
 brew "fish"
 brew "gemini-cli"
