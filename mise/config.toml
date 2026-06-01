@@ -17,7 +17,6 @@ bun = true
 aube = "latest"
 bun = "latest"
 "cargo:abtop" = "latest"
-"gem:colorls" = "latest"
 node = "lts"
 "npm:clawhub" = "latest"
 "npm:@jackwener/opencli" = "latest"
