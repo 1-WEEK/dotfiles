@@ -88,7 +88,7 @@ if status is-interactive
 
     # --- generic aliases (cross-platform) ---
     alias ls="eza"
-    alias lc="colorls --sd --tree=1"
+    alias lc="eza --tree --level=1 --sort=size"
     alias nls="npm list --dep=0"
     alias gsb="git status -sb"
     alias gm="git merge --no-ff"
