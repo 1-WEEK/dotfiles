@@ -7,9 +7,28 @@ case "$OSTYPE" in
 esac
 [[ -x "$BREW_PREFIX/bin/brew" ]] && eval "$($BREW_PREFIX/bin/brew shellenv)"
 
-# PATH
-export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+path_remove() {
+  local dir="$1"
+  [[ -n "$dir" ]] || return 0
+  PATH=":$PATH:"
+  PATH="${PATH//:$dir:/:}"
+  PATH="${PATH#:}"
+  PATH="${PATH%:}"
+}
+
+path_prepend() {
+  local dir="$1"
+  [[ -d "$dir" ]] || return 0
+  path_remove "$dir"
+  PATH="$dir${PATH:+:$PATH}"
+}
+
+path_append() {
+  local dir="$1"
+  [[ -d "$dir" ]] || return 0
+  path_remove "$dir"
+  PATH="${PATH:+$PATH:}$dir"
+}
 
 # true color
 export TERM="xterm-256color"
@@ -17,8 +36,19 @@ export TERM="xterm-256color"
 # mise (always; matches zsh/fish)
 command -v mise >/dev/null 2>&1 && eval "$(mise activate bash)"
 
-# Keep mise shims ahead of Homebrew (CLAUDE.md invariant)
-export PATH="$HOME/.local/share/mise/shims:$PATH"
+# Keep PATH order explicit and synced with fish/zsh:
+# mise shims -> Homebrew -> user bins -> tool installs/system -> app-bundled tools.
+path_prepend "$HOME/.antigravity/antigravity/bin"
+path_prepend "$HOME/.local/bin"
+path_prepend "$BREW_PREFIX/sbin"
+path_prepend "$BREW_PREFIX/bin"
+path_prepend "$HOME/.local/share/mise/shims"
+if [[ "$SETUP_OS" == "macos" ]]; then
+  export SCRCPY_SERVER_PATH=/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools/scrcpy-server
+  path_append "/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools"
+fi
+export PATH
+unset -f path_remove path_prepend path_append
 
 # macOS remote SSH sessions: Keychain agent socket isn't forwarded to SSH sessions
 if [[ "$SETUP_OS" == "macos" ]] && [[ -n "$SSH_CONNECTION" ]]; then
@@ -72,11 +102,8 @@ case $- in
     alias tree="tree -N"
     alias mv_comit='find . -name "*.zip" -print0 | xargs -0 -I {} mv {} .'
 
-    # macOS-only aliases / PATH / sources
+    # macOS-only aliases / sources
     if [[ "$SETUP_OS" == "macos" ]]; then
-      export SCRCPY_SERVER_PATH=/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools/scrcpy-server
-      export PATH=$PATH:/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools
-
       alias tmm="/Applications/tinyMediaManager.app/Contents/MacOS/tinyMediaManager"
       alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
       alias gitbk_serve="gitbook --lrport 9999 --port 31231 serve"
