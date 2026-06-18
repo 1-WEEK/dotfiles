@@ -13,9 +13,24 @@ switch (uname)
 end
 test -x $BREW_PREFIX/bin/brew; and $BREW_PREFIX/bin/brew shellenv fish | source
 
-# --- PATH additions (fish_add_path is idempotent; skips missing dirs) ---
-fish_add_path $HOME/.antigravity/antigravity/bin
-fish_add_path $HOME/.local/bin
+function __path_remove --argument-names dir
+    while contains -- "$dir" $PATH
+        set -l path_index (contains -i -- "$dir" $PATH)
+        set -e PATH[$path_index]
+    end
+end
+
+function __path_prepend --argument-names dir
+    test -d "$dir"; or return
+    __path_remove "$dir"
+    set -gx PATH "$dir" $PATH
+end
+
+function __path_append --argument-names dir
+    test -d "$dir"; or return
+    __path_remove "$dir"
+    set -gx PATH $PATH "$dir"
+end
 
 # --- env ---
 set -gx TERM xterm-256color
@@ -25,16 +40,21 @@ if type -q mise
     mise activate fish | source
 end
 
-# Keep mise shims ahead of Homebrew (CLAUDE.md invariant).
-# --move relocates the path if it's already in PATH; plain fish_add_path
-# would silently leave it after /opt/homebrew/bin.
-fish_add_path --prepend --move $HOME/.local/share/mise/shims
+# Keep PATH order explicit in config.fish, not fish_user_paths:
+# mise shims -> Homebrew -> user bins -> tool installs/system -> app-bundled tools.
+__path_prepend $HOME/.antigravity/antigravity/bin
+__path_prepend $HOME/.local/bin
+__path_prepend $BREW_PREFIX/sbin
+__path_prepend $BREW_PREFIX/bin
+__path_prepend $HOME/.local/share/mise/shims
 
 # macOS-only env
 if test "$SETUP_OS" = macos
     set -gx SCRCPY_SERVER_PATH /Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools/scrcpy-server
-    fish_add_path /Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools
+    __path_append /Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools
 end
+
+functions -e __path_remove __path_prepend __path_append
 
 # macOS remote SSH sessions: Keychain agent socket isn't forwarded to SSH sessions
 if test "$SETUP_OS" = macos; and set -q SSH_CONNECTION
