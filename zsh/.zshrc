@@ -15,6 +15,29 @@ case "$OSTYPE" in
 esac
 [[ -x "$BREW_PREFIX/bin/brew" ]] && eval "$($BREW_PREFIX/bin/brew shellenv)"
 
+path_remove() {
+  local dir="$1"
+  [[ -n "$dir" ]] || return 0
+  PATH=":$PATH:"
+  PATH="${PATH//:$dir:/:}"
+  PATH="${PATH#:}"
+  PATH="${PATH%:}"
+}
+
+path_prepend() {
+  local dir="$1"
+  [[ -d "$dir" ]] || return 0
+  path_remove "$dir"
+  PATH="$dir${PATH:+:$PATH}"
+}
+
+path_append() {
+  local dir="$1"
+  [[ -d "$dir" ]] || return 0
+  path_remove "$dir"
+  PATH="${PATH:+$PATH:}$dir"
+}
+
 # true color
 export TERM="xterm-256color"
 
@@ -64,7 +87,7 @@ alias gm="git merge --no-ff"
 alias tree="tree -N"
 alias mv_comit="find . -name \"*\.zip\" -print0 |  xargs -0 -I {} mv {} ."
 
-# macOS-only aliases / PATH / sources
+# macOS-only aliases / sources
 if [[ "$SETUP_OS" == "macos" ]]; then
   alias tmm="/Applications/tinyMediaManager.app/Contents/MacOS/tinyMediaManager"
   alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
@@ -72,27 +95,28 @@ if [[ "$SETUP_OS" == "macos" ]]; then
   alias rm="trash"
   alias localip="ifconfig en0 | grep 'net[ ]' | awk '{print \$2}'"
 
-  # 极空间
-  export SCRCPY_SERVER_PATH=/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools/scrcpy-server
-  export PATH=$PATH:/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools
-
   # OpenClaw completion
   if [ -f "$HOME/.openclaw/completions/openclaw.zsh" ]; then
     source "$HOME/.openclaw/completions/openclaw.zsh"
   fi
 fi
 
-# Antigravity
-export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
-
-# claude code
-export PATH="$HOME/.local/bin:$PATH"
-
 # mise (must run before starship so prompt sees mise versions)
 eval "$(mise activate zsh)"
 
-# Keep mise shims ahead of Homebrew (CLAUDE.md invariant)
-export PATH="$HOME/.local/share/mise/shims:$PATH"
+# Keep PATH order explicit and synced with fish/bash:
+# mise shims -> Homebrew -> user bins -> tool installs/system -> app-bundled tools.
+path_prepend "$HOME/.antigravity/antigravity/bin"
+path_prepend "$HOME/.local/bin"
+path_prepend "$BREW_PREFIX/sbin"
+path_prepend "$BREW_PREFIX/bin"
+path_prepend "$HOME/.local/share/mise/shims"
+if [[ "$SETUP_OS" == "macos" ]]; then
+  export SCRCPY_SERVER_PATH=/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools/scrcpy-server
+  path_append "/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools"
+fi
+export PATH
+unset -f path_remove path_prepend path_append
 
 # starship
 eval "$(starship init zsh)"
