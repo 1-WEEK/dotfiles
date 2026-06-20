@@ -54,6 +54,11 @@ if test "$SETUP_OS" = macos
     __path_append /Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools
 end
 
+# OrbStack CLI integration (macOS only; skip if not installed)
+if test "$SETUP_OS" = macos; and test -f ~/.orbstack/shell/init2.fish
+    source ~/.orbstack/shell/init2.fish
+end
+
 functions -e __path_remove __path_prepend __path_append
 
 # macOS remote SSH sessions: Keychain agent socket isn't forwarded to SSH sessions
