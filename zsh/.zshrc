@@ -115,6 +115,12 @@ if [[ "$SETUP_OS" == "macos" ]]; then
   export SCRCPY_SERVER_PATH=/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools/scrcpy-server
   path_append "/Applications/极空间.app/Contents/Resources/app.asar.unpacked/bin/platform-tools"
 fi
+
+# OrbStack CLI integration (macOS only; skip if not installed)
+if [[ "$SETUP_OS" == "macos" ]] && [[ -f ~/.orbstack/shell/init.zsh ]]; then
+  source ~/.orbstack/shell/init.zsh
+fi
+
 export PATH
 unset -f path_remove path_prepend path_append
 
