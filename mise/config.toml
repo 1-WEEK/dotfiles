@@ -3,6 +3,7 @@
 # See CLAUDE.md → "Environment management philosophy" for the full rules.
 
 [settings]
+trusted_config_paths = ["/Users/1-week/.lody/repos/local---69f5c689a94b", "gcores-android-tv/"]
 
 [settings.ruby]
 compile = false
@@ -35,4 +36,4 @@ pipx = "latest"
 "npm:command-code" = "latest"
 "npm:@colbymchenry/codegraph" = "latest"
 "cargo:eza" = "latest"
-"github:can1357/oh-my-pi" = "latest"
+"npm:@oh-my-pi/pi-coding-agent" = "latest"
