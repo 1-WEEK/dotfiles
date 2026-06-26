@@ -19,7 +19,9 @@ This dotfiles repo encodes one principle: **mise is the canonical source of trut
 
 3. **No `python3` or `pip3` aliases that bypass mise.** After `mise activate`, `python3` and `pip3` resolve through `~/.local/share/mise/shims`. Brew's `python@3.14` and the system Python in `/usr/bin/python3` are still present but are not on the interactive PATH ahead of mise.
 
-4. **Every new machine should reach the same state from `mise/config.toml` alone.** If you install something via `uv tool install`, `npm install -g`, `cargo install`, or `gem install` *outside* of mise, it's invisible to other machines. Convert it to a `mise use -g` declaration.
+4. **Every new machine should reach the same synced state from `mise/config.toml` alone.** If you install something via `uv tool install`, `npm install -g`, `cargo install`, or `gem install` *outside* of mise, it's invisible to other machines. Convert synced tools to a `mise use -g` declaration.
+
+5. **Machine-local global tools still belong to mise, but not to the repo.** If a CLI should be installed only on one host, declare it in `~/.config/mise/config.local.toml` instead of `mise/config.toml`. This keeps ownership with mise without forcing every synced device to install the tool.
 
 ## Architectural rules these configs encode
 

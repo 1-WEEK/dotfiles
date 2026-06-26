@@ -83,6 +83,7 @@ Rule of thumb: **if you want it on another machine, commit it here.**
 | `mise use -g X@v` | Edit `~/.config/mise/config.toml` (symlink) then commit `mise/config.toml` |
 | `mise use -g uv` / `mise use -g python@x.xx` | Same as above |
 | `mise use -g pipx:<python-cli>` | Same as above |
+| `mise use -g --env local npm:<machine-cli>` | Keep it in `~/.config/mise/config.local.toml`; do not commit it |
 | `uv tool install <name>` (standalone) | **Do not.** Convert to `mise use -g pipx:<name>` |
 | `fisher install X` | `fish/fish_plugins` is auto-updated by fisher, then commit it |
 | Edit `.zshrc` / `config.fish` / `.bashrc` / `.tmux.conf` / `.vimrc` / ghostty | Edit directly, then commit (they are symlinks) |
