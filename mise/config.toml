@@ -8,9 +8,6 @@ trusted_config_paths = ["/Users/1-week/.lody/repos/local---69f5c689a94b", "gcore
 [settings.ruby]
 compile = false
 
-[settings.node]
-default_packages_file = "~/.default-npm-packages"
-
 [settings.npm]
 bun = true
 
