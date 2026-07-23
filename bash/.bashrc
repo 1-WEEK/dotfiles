@@ -101,6 +101,7 @@ case $- in
 
     # generic aliases (cross-platform)
     alias ls="eza"
+    alias ll="eza -lh"
     alias lc="eza --tree --level=1 --sort=size"
     alias nls="npm list --dep=0"
     alias gsb="git status -sb"

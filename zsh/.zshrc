@@ -80,6 +80,7 @@ export EZA_ICONS_AUTO=1
 
 # generic aliases (cross-platform)
 alias ls="eza"
+alias ll="eza -lh"
 alias lc="eza --tree --level=1 --sort=size"
 alias nls="npm list --dep=0"
 alias gsb="git status -sb"
