@@ -122,3 +122,14 @@ case $- in
     fi
     ;;
 esac
+
+
+# Force Go programs (agy) to use the glibc DNS resolver. The pure-Go resolver
+# waits on the unreachable IPv6 nameservers in /etc/resolv.conf (RA-advertised
+# Google DNS, UDP/53 blackholed), making every lookup take 10-20s and blowing
+# agy's 10s keyringAuth deadline -> login prompt on every start.
+# This is specific to raspberrypi4's network (RA-advertised IPv6 DNS blackholed
+# on UDP/53) -- gated by hostname so it doesn't leak to other machines.
+if [[ "$(hostname -s)" == "raspberrypi4" ]]; then
+  export GODEBUG="netdns=cgo"
+fi
