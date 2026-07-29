@@ -98,9 +98,9 @@ if status is-interactive
 
     set -gx GPG_TTY (tty)
 
-    # autojump (replaces the oh-my-zsh autojump plugin)
-    if test -f $BREW_PREFIX/share/autojump/autojump.fish
-        source $BREW_PREFIX/share/autojump/autojump.fish
+    # zoxide
+    if type -q zoxide
+        zoxide init fish | source
     end
 
     # starship prompt (after mise activate so node/ruby/rust segments resolve)
