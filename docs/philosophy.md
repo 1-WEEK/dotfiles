@@ -29,6 +29,6 @@ This dotfiles repo encodes one principle: **mise is the canonical source of trut
 
 - **Manico is *not* symlinked.** Other apps' configs are linked via Dotter; Manico is plist-based and contains device-specific IDs and licenses, so `sync.sh` round-trips only a non-sensitive subset through `defaults read`/`defaults write`. License must be re-entered on each new machine.
 
-- **Interactive-only vs always-loaded.** `fish/config.fish` puts PATH/env in the always-loaded section and gates prompt/aliases/autojump behind `if status is-interactive`. Match this convention when editing.
+- **Interactive-only vs always-loaded.** `fish/config.fish` puts PATH/env in the always-loaded section and gates prompt/aliases/zoxide behind `if status is-interactive`. Match this convention when editing.
 
 - **Completion files live outside this repo.** They are regenerated per-machine (`bun completions`, `openclaw completion`) and intentionally not under Dotter.
