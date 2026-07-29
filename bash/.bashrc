@@ -90,8 +90,8 @@ case $- in
       fi
     fi
 
-    # autojump
-    [[ -f "$BREW_PREFIX/etc/profile.d/autojump.sh" ]] && source "$BREW_PREFIX/etc/profile.d/autojump.sh"
+    # zoxide
+    command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init bash)"
 
     # starship
     command -v starship >/dev/null 2>&1 && eval "$(starship init bash)"
