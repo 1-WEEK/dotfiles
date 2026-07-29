@@ -2,10 +2,10 @@
 # Approximates Brewfile.common via apt; some tools (gemini-cli, dotter, mise,
 # starship, yazi) need separate installers — handled in steps/.
 
-autojump
 eza
 fd-find
 fish
+fzf
 gnome-keyring
 keychain
 jq
@@ -17,3 +17,4 @@ tig
 tmux
 tree
 wget
+zoxide

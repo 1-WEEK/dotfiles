@@ -1,11 +1,11 @@
 # Cross-platform Homebrew formulae (macOS + linuxbrew on Linux x86_64/arm64).
 # Source of truth for `brew bundle install --file=Brewfile.common`.
 
-brew "autojump"
 brew "dotter"
 brew "eza"
 brew "fd"
 brew "fish"
+brew "fzf"
 brew "gemini-cli"
 brew "gh"
 brew "mise"
@@ -19,3 +19,4 @@ brew "tmux"
 brew "tree"
 brew "wget"
 brew "yazi"
+brew "zoxide"
