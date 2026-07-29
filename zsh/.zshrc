@@ -2,7 +2,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="robbyrussell"
 
-plugins=(git autojump zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 # zsh completions fpath (must be set before oh-my-zsh sources compinit)
 fpath=($HOME/.zsh/completions $fpath)
@@ -123,6 +123,9 @@ fi
 
 export PATH
 unset -f path_remove path_prepend path_append
+
+# zoxide
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
 
 # starship
 eval "$(starship init zsh)"
