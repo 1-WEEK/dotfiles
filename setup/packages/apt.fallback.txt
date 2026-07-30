@@ -1,5 +1,5 @@
 # Used on Linux when linuxbrew isn't available (e.g. Pi4 armv7).
-# Approximates Brewfile.common via apt; some tools (gemini-cli, dotter, mise,
+# Approximates Brewfile.common via apt; some tools (dotter, mise,
 # starship, yazi) need separate installers — handled in steps/.
 
 eza
