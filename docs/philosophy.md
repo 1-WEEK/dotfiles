@@ -9,7 +9,7 @@ This dotfiles repo encodes one principle: **mise is the canonical source of trut
 | **mise** | Version manager of managers. Locks runtime and tool versions in `mise/config.toml`. | node, python, uv, ruby, rust, bun, cargo tools, npm packages, pipx tools | `mise use -g <tool>` |
 | **Homebrew** | System-level dependencies and GUI apps only. Never installs language runtimes that mise can handle. | git, ripgrep, ffmpeg, Ghostty, Manico | `brew install` / Brewfile |
 | **uv** | Python-internal workflow tool. Managed *by* mise, not alongside it. | Python venvs, package resolution, `uv tool install` (called by mise pipx backend) | `mise use -g uv` |
-| **curl \| sh** | Last resort for things neither mise nor brew cover. | claude-code installer | New `setup/steps/NN-*.sh` |
+| **curl \| sh** | Official installers for tools whose distro/homebrew packages lag upstream or aren't packaged. mise itself ships this way (tracks upstream releases immediately). | mise, claude-code | New `setup/steps/NN-*.sh` |
 
 ## Rules derived from this
 
