@@ -15,4 +15,4 @@ PROFILE_STEPS=(
   62-setup-tmux
 )
 
-PROFILE_DOTTER_PACKAGES='["zsh", "fish", "vim", "bash", "tmux", "mise"]'
+PROFILE_DOTTER_PACKAGES='["zsh", "fish", "vim", "bash", "tmux", "mise", "eza"]'

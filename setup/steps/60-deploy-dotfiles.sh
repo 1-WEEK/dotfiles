@@ -16,6 +16,7 @@ DEPLOY_TARGETS=(
   "$HOME/.config/fish/config.fish"
   "$HOME/.config/fish/fish_plugins"
   "$HOME/.config/mise/config.toml"
+  "$HOME/.config/eza/theme.yml"
   "$HOME/Library/Application Support/com.mitchellh.ghostty/config.ghostty"
 )
 

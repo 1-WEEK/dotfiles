@@ -32,4 +32,4 @@ else
   )
 fi
 
-PROFILE_DOTTER_PACKAGES='["zsh", "fish", "vim", "bash", "tmux", "mise"]'
+PROFILE_DOTTER_PACKAGES='["zsh", "fish", "vim", "bash", "tmux", "mise", "eza"]'

@@ -51,7 +51,7 @@ Each step is prefixed with a number and can be run individually with `--only=NN`
 
 ### tmux / catppuccin patch (step 62)
 
-After tpm installs the pinned `catppuccin/tmux#v2.1.3`, the step runs `tmux/patch-catppuccin-577.py` to backport [PR #577](https://github.com/catppuccin/tmux/pull/577) onto the vendored `catppuccin_tmux.conf`.
+After tpm installs the pinned `catppuccin/tmux#v2.1.3`, the step aligns the vendored checkout to that tag (TPM skips reinstall when the plugin dir exists, so an older checkout would otherwise stay put), then runs `tmux/patch-catppuccin-577.py` to backport [PR #577](https://github.com/catppuccin/tmux/pull/577) onto the vendored `catppuccin_tmux.conf`. The backport anchors are written against the pinned release, so step 62 also verifies the checkout is exactly on the pin.
 
 The `rounded` window status style uses `#[fg=...,reverse]<glyph>` for separators. This forces terminal cell opacity to 1.0 and breaks `@catppuccin_status_background "none"`. Runtime overrides in `.tmux.conf` cannot fix this because the plugin bakes the separator variables into `window-status-format` via `set -agF` at load time. Patching the source file is the only clean fix until the pinned tag is bumped past a release containing PR #577.
 
