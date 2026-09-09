@@ -3,7 +3,8 @@
 
 step_check() {
   command -v curl >/dev/null 2>&1 \
-    && command -v git >/dev/null 2>&1
+    && command -v git >/dev/null 2>&1 \
+    && command -v python3 >/dev/null 2>&1
 }
 
 step_run() {

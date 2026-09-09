@@ -16,7 +16,4 @@ step_run() {
     log_info "Installing starship via official script"
     run sh -c 'curl -sS https://starship.rs/install.sh | sh -s -- -y'
   fi
-  if ! command -v dotter >/dev/null 2>&1; then
-    log_warn "dotter not in apt; install via cargo or download release manually"
-  fi
 }

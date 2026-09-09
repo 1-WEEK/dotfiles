@@ -6,4 +6,5 @@ git
 gnome-keyring
 keychain
 locales
+python3
 unzip

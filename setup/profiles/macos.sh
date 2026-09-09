@@ -8,13 +8,10 @@ PROFILE_STEPS=(
   15-install-mise
   21-install-brew-macos
   25-install-claude
-  30-setup-shells
-  40-install-mise-tools
-  50-install-dotter
   60-deploy-dotfiles
+  40-install-mise-tools
+  30-setup-shells
   61-setup-vim
   62-setup-tmux
   70-setup-manico
 )
-
-PROFILE_DOTTER_PACKAGES='["ghostty", "zsh", "fish", "vim", "bash", "tmux", "mise", "eza"]'

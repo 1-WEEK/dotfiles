@@ -27,8 +27,8 @@ This dotfiles repo encodes one principle: **mise is the canonical source of trut
 
 - **mise shims must beat Homebrew on PATH.** Every shell rc prepends `~/.local/share/mise/shims` after tool init. A previous incident had an app running under Homebrew Node 25 while its plugins were built for Node 24. If you refactor PATH logic, preserve this ordering.
 
-- **Manico is *not* symlinked.** Other apps' configs are linked via Dotter; Manico is plist-based and contains device-specific IDs and licenses, so `sync.sh` round-trips only a non-sensitive subset through `defaults read`/`defaults write`. License must be re-entered on each new machine.
+- **Manico is *not* symlinked.** Other apps' configs are linked via mise; Manico is plist-based and contains device-specific IDs and licenses, so `sync.sh` round-trips only a non-sensitive subset through `defaults read`/`defaults write`. License must be re-entered on each new machine.
 
 - **Interactive-only vs always-loaded.** `fish/config.fish` puts PATH/env in the always-loaded section and gates prompt/aliases/zoxide behind `if status is-interactive`. Match this convention when editing.
 
-- **Completion files live outside this repo.** They are regenerated per-machine (`bun completions`, `openclaw completion`) and intentionally not under Dotter.
+- **Completion files live outside this repo.** They are regenerated per-machine (`bun completions`, `openclaw completion`) and intentionally outside configuration deployment.

@@ -9,6 +9,7 @@
 #   setup/bootstrap.sh --check          dry-run
 #   setup/bootstrap.sh --list           list steps for the active profile
 #   setup/bootstrap.sh --help           show this help
+#   setup/bootstrap.sh --adopt          back up conflicting dotfiles and adopt
 
 set -euo pipefail
 
@@ -22,7 +23,7 @@ export SETUP_ROOT DOTFILES_ROOT
 . "$SETUP_ROOT/lib/install.sh"
 
 usage() {
-  sed -n '2,12p' "$0" | sed 's/^# \{0,1\}//'
+  sed -n '2,13p' "$0" | sed 's/^# \{0,1\}//'
 }
 
 AUTO=0
@@ -35,6 +36,7 @@ SKIP=""
 for arg in "$@"; do
   case "$arg" in
     --auto)            AUTO=1 ;;
+    --adopt)           export DOTFILES_ADOPT=1 ;;
     --check|-n)        DRY_RUN=1 ;;
     --list)            LIST=1 ;;
     --profile=*)       SETUP_PROFILE_OVERRIDE="${arg#*=}" ;;
@@ -45,6 +47,7 @@ for arg in "$@"; do
   esac
 done
 export DRY_RUN
+export PATH="$HOME/.local/bin:$PATH"
 
 # shellcheck disable=SC1091
 . "$SETUP_ROOT/lib/detect.sh"
@@ -137,6 +140,12 @@ FAILED=()
 for s in "${STEPS_TO_RUN[@]}"; do
   if ! run_step "$s"; then
     FAILED+=("$s")
+    case "$s" in
+      15|15-*|60|60-*)
+        log_error "Required mise/configuration step failed; stopping dependent setup."
+        break
+        ;;
+    esac
     log_warn "Step $s failed; continuing"
   fi
 done

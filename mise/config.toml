@@ -35,3 +35,21 @@ pipx = "latest"
 "cargo:eza" = "latest"
 "npm:@oh-my-pi/pi-coding-agent" = "latest"
 "npm:lody" = "latest"
+
+[dotfiles]
+"~/.config/mise/config.toml" = { source = "~/.dotfiles/mise/config.toml", mode = "symlink" }
+"~/.zshrc" = { source = "~/.dotfiles/zsh/.zshrc", mode = "symlink" }
+"~/.zprofile" = { source = "~/.dotfiles/zsh/.zprofile", mode = "symlink" }
+"~/.bashrc" = { source = "~/.dotfiles/bash/.bashrc", mode = "symlink" }
+"~/.bash_profile" = { source = "~/.dotfiles/bash/.bash_profile", mode = "symlink" }
+"~/.vimrc" = { source = "~/.dotfiles/vim/.vimrc", mode = "symlink" }
+"~/.tmux.conf" = { source = "~/.dotfiles/tmux/.tmux.conf", mode = "symlink" }
+"~/.config/eza/theme.yml" = { source = "~/.dotfiles/eza/theme.yml", mode = "symlink" }
+"~/.config/fish/config.fish" = { source = "~/.dotfiles/fish/config.fish", mode = "symlink" }
+"~/.config/fish/fish_plugins" = { source = "~/.dotfiles/fish/fish_plugins", mode = "symlink" }
+"~/.config/fish/functions/chrome.fish" = { source = "~/.dotfiles/fish/functions/chrome.fish", mode = "symlink" }
+"~/.config/fish/functions/localip.fish" = { source = "~/.dotfiles/fish/functions/localip.fish", mode = "symlink" }
+"~/.config/fish/functions/mv_comit.fish" = { source = "~/.dotfiles/fish/functions/mv_comit.fish", mode = "symlink" }
+
+[bootstrap.hooks]
+pre-dotfiles = 'bash "$HOME/.dotfiles/setup/lib/mise-latest.sh" --verify && python3 "$HOME/.dotfiles/setup/preflight-dotfiles.py"'

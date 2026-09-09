@@ -10,10 +10,9 @@ if [ "$SETUP_HAS_BREW_TARGET" = "1" ]; then
     20-install-brew-common
     15-install-mise
     25-install-claude
-    30-setup-shells
-    40-install-mise-tools
-    50-install-dotter
     60-deploy-dotfiles
+    40-install-mise-tools
+    30-setup-shells
     61-setup-vim
     62-setup-tmux
   )
@@ -23,13 +22,10 @@ else
     22-install-apt-fallback
     15-install-mise
     25-install-claude
-    30-setup-shells
-    40-install-mise-tools
-    50-install-dotter
     60-deploy-dotfiles
+    40-install-mise-tools
+    30-setup-shells
     61-setup-vim
     62-setup-tmux
   )
 fi
-
-PROFILE_DOTTER_PACKAGES='["zsh", "fish", "vim", "bash", "tmux", "mise", "eza"]'

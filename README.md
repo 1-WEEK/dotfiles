@@ -14,7 +14,7 @@ Personal cross-platform dotfiles for macOS, Raspberry Pi 4 (64-bit Linux), and W
 | Ghostty | Terminal config |
 | Manico | App switcher settings |
 
-Everything is symlinked to `$HOME` via [Dotter](https://github.com/SuperCuber/dotter). Each top-level directory is one module; `.dotter/global.toml` maps files to their target paths.
+Configuration is symlinked to `$HOME` by native [mise dotfiles](https://mise.jdx.dev/dotfiles.html). `mise/config.toml` declares tools and shared targets; `mise/config.macos.toml` adds Ghostty on macOS. Manico uses its separate preference import.
 
 ## Quick start on a new machine
 
@@ -24,13 +24,12 @@ cd ~/.dotfiles
 ./setup/bootstrap.sh
 ```
 
-The bootstrap script detects your platform and installs dependencies. It is idempotent: running it twice does nothing. See [`docs/bootstrap.md`](docs/bootstrap.md) for flags, step details, and how to add a new step.
+The bootstrap script detects your platform and installs dependencies. Configuration deployment checks the latest stable mise on every run and preserves correct links. Existing users should follow the [migration guide](docs/dotfiles-migration.md). See [`docs/bootstrap.md`](docs/bootstrap.md) for flags and step details.
 
 ## Project layout
 
 ```
 .
-├── .dotter/          # symlink mappings (global.toml)
 ├── setup/            # bootstrap scripts
 │   ├── bootstrap.sh  # entry point
 │   ├── steps/        # numbered deploy steps
@@ -39,14 +38,13 @@ The bootstrap script detects your platform and installs dependencies. It is idem
 ├── bash/ fish/ zsh/  # shell configs
 ├── ghostty/          # terminal config
 ├── tmux/             # tmux + catppuccin patch
-├── mise/             # runtime versions
+├── mise/             # tools and native dotfile declarations
 └── manico/           # sync script + settings
 ```
 
 ## Managed by
 
-- **Dotter** for file symlinks (`dotter deploy`)
-- **mise** for language runtimes and global CLI tools ([philosophy](docs/philosophy.md))
+- **mise** for configuration symlinks, language runtimes and global CLI tools ([philosophy](docs/philosophy.md))
 - **Homebrew** for system-level dependencies and GUI apps
 
 ## Platform conventions
@@ -80,8 +78,8 @@ Then open tmux and press `prefix + I` to install plugins.
 
 | Command | Purpose |
 |---------|---------|
-| `dotter deploy` | Apply symlinks to `$HOME` |
-| `dotter -d` | Dry-run: show what would change |
+| `MISE_AUTO_ENV=true mise -C ~ bootstrap dotfiles apply` | Deploy configuration with native platform selection |
+| `MISE_AUTO_ENV=true mise -C ~ bootstrap dotfiles apply --dry-run` | Preview without changing targets |
 | `./setup/bootstrap.sh --auto` | Non-interactive bootstrap |
 | `./setup/bootstrap.sh --list` | Show steps for the active profile |
 | `./setup/bootstrap.sh --only=62` | Run a single step |

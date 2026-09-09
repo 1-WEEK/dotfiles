@@ -1,0 +1,3 @@
+[dotfiles]
+"~/.config/mise/config.macos.toml" = { source = "~/.dotfiles/mise/config.macos.toml", mode = "symlink" }
+"~/Library/Application Support/com.mitchellh.ghostty/config.ghostty" = { source = "~/.dotfiles/ghostty/config.ghostty", mode = "symlink" }

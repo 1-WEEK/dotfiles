@@ -60,8 +60,7 @@ tags
 ### end git-agent ###
 
 ### custom rules ###
-.dotter/local.toml
-.dotter/cache.toml
-.dotter/cache/
+# Retired deployment state can remain on existing machines until manual cleanup.
+.dotter/
 .antigravitycli/
 .alma-snapshots/

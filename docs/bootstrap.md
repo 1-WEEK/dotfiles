@@ -2,6 +2,8 @@
 
 One-shot setup for a fresh machine. The bootstrap script detects your platform (macOS, Raspberry Pi 4, or WSL2) and runs the correct sequence of steps.
 
+Run from the standard checkout at `~/.dotfiles`. Setup reports a missing or occupied location and never moves another checkout there. Configuration deployment needs curl, Git, Python 3 (Command Line Tools on macOS, `python3` on Linux), and the latest stable mise. Step 15 installs or upgrades mise; selecting step 60 alone also enforces this prerequisite. Network, upgrade, or verification failures block deployment. A failure of step 15 or 60 stops the remaining setup steps.
+
 ## Quick start
 
 ```bash
@@ -14,6 +16,7 @@ One-shot setup for a fresh machine. The bootstrap script detects your platform (
 | Flag | Effect |
 |------|--------|
 | `--auto` | Run all steps without prompting |
+| `--adopt` | Explicitly back up conflicting dotfiles before adopting them; `--auto` alone does not authorize this |
 | `--check` / `-n` | Dry run; print actions without executing |
 | `--list` | Show the steps for the active profile |
 | `--profile=NAME` | Force profile (`macos`, `pi4`, `wsl2`) |
@@ -35,16 +38,16 @@ Each step is prefixed with a number and can be run individually with `--only=NN`
 
 | Step | Description |
 |------|-------------|
-| 00-install-prereqs | curl, git, build tools |
+| 00-install-prereqs | curl, git, Python 3, build tools |
 | 10-install-homebrew | brew (macOS) or linuxbrew (Linux x86_64/arm64) |
+| 15-install-mise | verify the latest stable release and install/upgrade mise |
 | 20-install-brew-common | packages/Brewfile.common |
 | 21-install-brew-macos | packages/Brewfile.macos (mac only) |
 | 22-install-apt-fallback | armv7 / no-brew Linux fallback via apt |
 | 25-install-claude | curl https://claude.ai/install.sh |
 | 30-setup-shells | oh-my-zsh, zsh-autosuggestions, zsh-syntax-highlighting; chsh to fish |
 | 40-install-mise-tools | mise install (per mise/config.toml) |
-| 50-install-dotter | ensure dotter is on PATH |
-| 60-deploy-dotfiles | write .dotter/local.toml from profile + dotter deploy |
+| 60-deploy-dotfiles | verify mise, preflight conflicts, then apply native dotfiles |
 | 61-setup-vim | vim-plug + :PlugInstall |
 | 62-setup-tmux | TPM clone + plugin install + catppuccin PR #577 patch |
 | 70-setup-manico | mac only - sync.sh import if Manico.app exists |
@@ -59,7 +62,25 @@ The script is idempotent. Its `step_check` verifies the patch marker, so re-runn
 
 ## Idempotency
 
-Every step has a `step_check` that returns 0 when the machine already satisfies it. Re-running `--auto` on a fully configured machine produces no changes.
+Most steps use `step_check` to skip satisfied work. Mise version checks and configuration preflight always run. Native apply preserves correct links and repairs missing links based on actual targets. Profiles deploy configuration before installing mise tools and shell plugins. Preview checks the release service but does not install mise or change deployment targets or backups; if mise is absent, install step 15 before requesting a detailed native preview.
+
+For routine configuration updates, use the native command without installing tools:
+
+```sh
+MISE_AUTO_ENV=true mise -C ~ bootstrap dotfiles apply --dry-run
+MISE_AUTO_ENV=true mise -C ~ bootstrap dotfiles apply
+MISE_AUTO_ENV=true mise -C ~ bootstrap dotfiles status --missing
+```
+
+`MISE_AUTO_ENV=true` selects the host platform, including Ghostty on macOS. The setup profile interface explicitly selects macOS or Linux instead, so `--profile=pi4` and `--profile=wsl2` exclude Ghostty even during a simulated run on macOS. Native apply runs the same latest-version and conflict hooks. An outdated mise stops native apply; run `~/.dotfiles/setup/bootstrap.sh --only=15 --auto`, then retry. Do not use `--force` to bypass adoption: use the [explicit backup workflow](dotfiles-migration.md).
+
+## Deployment tests
+
+```sh
+python3 -m unittest discover -s setup/tests -v
+```
+
+Tests use native mise from PATH (or `TEST_MISE=/path/to/mise`) with a temporary HOME, checkout, configuration, state, and cache. Release lookup, installation, and self-update are simulated, so the suite does not download tools or modify the real machine. Run with an unprivileged account to exercise backup permission failures. Profile tests cover macOS, pi4, and wsl2 selection; simulated Linux profiles on macOS are not native Linux execution.
 
 ## Adding a step
 
@@ -90,7 +111,7 @@ Rule of thumb: **if you want it on another machine, commit it here.**
 | New vim Plug / tmux @plugin line | Add to the rc file; steps 61 / 62 pick it up |
 | New OMZ custom plugin | Add a `clone_or_pull` line to `steps/30-shells.sh` |
 | `curl ... | sh` installer not covered by mise | New `steps/NN-name.sh` |
-| New dotter module | Edit `.dotter/global.toml`, add to `PROFILE_DOTTER_PACKAGES` and `DEPLOY_TARGETS` in `steps/60-deploy-dotfiles.sh` |
+| New managed file | Add a `[dotfiles]` entry to `mise/config.toml` (or `mise/config.macos.toml` for macOS), using a source under `~/.dotfiles` |
 
 Skip one-off project deps, throwaway experiments, and machine-specific secrets (use a local rc file outside the repo).
 
@@ -110,5 +131,5 @@ git status
 ./setup/bootstrap.sh --list           # confirm step set for the profile
 brew bundle check --file=setup/packages/Brewfile.common
 brew bundle check --file=setup/packages/Brewfile.macos   # mac only
-dotter -d                             # should show empty diff
+MISE_AUTO_ENV=true mise -C ~ bootstrap dotfiles status --missing
 ```

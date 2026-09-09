@@ -1,7 +1,6 @@
 # Cross-platform Homebrew formulae (macOS + linuxbrew on Linux x86_64/arm64).
 # Source of truth for `brew bundle install --file=Brewfile.common`.
 
-brew "dotter"
 brew "eza"
 brew "fd"
 brew "fish"
