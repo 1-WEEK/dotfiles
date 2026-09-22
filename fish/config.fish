@@ -35,10 +35,6 @@ end
 # --- env ---
 set -gx TERM xterm-256color
 
-# --- mise (always; sets up shell hooks) ---
-if type -q mise
-    mise activate fish | source
-end
 
 # Keep PATH order explicit in config.fish, not fish_user_paths:
 # mise shims -> Homebrew -> user bins -> tool installs/system -> app-bundled tools.
@@ -47,6 +43,11 @@ __path_prepend $HOME/.local/bin
 __path_prepend $BREW_PREFIX/sbin
 __path_prepend $BREW_PREFIX/bin
 __path_prepend $HOME/.local/share/mise/shims
+
+# --- mise (always; sets up shell hooks) ---
+if type -q mise
+    mise activate fish | source
+end
 
 # macOS-only env
 if test "$SETUP_OS" = macos
