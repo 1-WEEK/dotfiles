@@ -4,6 +4,13 @@
 
 [settings]
 trusted_config_paths = ["/Users/1-week/.lody/repos/local---69f5c689a94b", "gcores-android-tv/"]
+# Auto-update mise itself and every tool in this global config.
+self_update.auto = true
+self_update.check_duration = "24h"
+tool_update.global_auto = true
+tool_update.check_duration = "24h"
+# No supply-chain release-age delay: take versions as soon as published.
+minimum_release_age = "0s"
 
 [settings.ruby]
 compile = false
@@ -37,6 +44,7 @@ pipx = "latest"
 
 [dotfiles]
 "~/.config/mise/config.toml" = { source = "~/.dotfiles/mise/config.toml", mode = "symlink" }
+"~/.local/bin/mise-autoupdate" = { source = "~/.dotfiles/mise/mise-autoupdate.sh", mode = "symlink" }
 "~/.zshrc" = { source = "~/.dotfiles/zsh/.zshrc", mode = "symlink" }
 "~/.zprofile" = { source = "~/.dotfiles/zsh/.zprofile", mode = "symlink" }
 "~/.bashrc" = { source = "~/.dotfiles/bash/.bashrc", mode = "symlink" }

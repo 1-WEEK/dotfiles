@@ -14,7 +14,7 @@ Personal cross-platform dotfiles for macOS, Raspberry Pi 4 (64-bit Linux), and W
 | Ghostty | Terminal config |
 | Manico | App switcher settings |
 
-Configuration is symlinked to `$HOME` by native [mise dotfiles](https://mise.jdx.dev/dotfiles.html). `mise/config.toml` declares tools and shared targets; `mise/config.macos.toml` adds Ghostty on macOS. Manico uses its separate preference import.
+Configuration is symlinked to `$HOME` by native [mise dotfiles](https://mise.jdx.dev/dotfiles.html). `mise/config.toml` declares tools and shared targets; `mise/config.macos.toml` adds Ghostty and the daily `mise-autoupdate` LaunchAgent on macOS, while `mise/config.linux.toml` schedules the same script with a systemd user timer. Manico uses its separate preference import.
 
 ## Quick start on a new machine
 

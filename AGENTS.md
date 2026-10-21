@@ -4,7 +4,7 @@ This file provides guidance to coding agents when working with this repository.
 
 ## What this is
 
-Personal cross-platform dotfiles (macOS / Pi4 64-bit Linux / WSL2 Ubuntu 24) managed by native mise dotfiles. `mise/config.toml` declares shared tools and configuration links; `mise/config.macos.toml` adds Ghostty on macOS. Deployment sources live at `~/.dotfiles`.
+Personal cross-platform dotfiles (macOS / Pi4 64-bit Linux / WSL2 Ubuntu 24) managed by native mise dotfiles. `mise/config.toml` declares shared tools and configuration links; `mise/config.macos.toml` adds Ghostty and the daily `mise-autoupdate` LaunchAgent on macOS, while `mise/config.linux.toml` schedules the same script with a systemd user timer. Deployment sources live at `~/.dotfiles`.
 
 ## Common commands
 

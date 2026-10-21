@@ -112,6 +112,8 @@ Rule of thumb: **if you want it on another machine, commit it here.**
 | New OMZ custom plugin | Add a `clone_or_pull` line to `steps/30-shells.sh` |
 | `curl ... | sh` installer not covered by mise | New `steps/NN-name.sh` |
 | New managed file | Add a `[dotfiles]` entry to `mise/config.toml` (or `mise/config.macos.toml` for macOS), using a source under `~/.dotfiles` |
+| New macOS LaunchAgent | Declare it under `[bootstrap.macos.launchd.agents]` in `mise/config.macos.toml`; step 60 runs `mise bootstrap macos launchd-agents apply` |
+| New Linux systemd service or timer | Declare it under `[bootstrap.linux.systemd.units]` in `mise/config.linux.toml`; step 60 runs `mise bootstrap linux systemd-units apply` when a user systemd manager is available |
 
 Skip one-off project deps, throwaway experiments, and machine-specific secrets (use a local rc file outside the repo).
 

@@ -1,0 +1,18 @@
+[dotfiles]
+"~/.config/mise/config.linux.toml" = { source = "~/.dotfiles/mise/config.linux.toml", mode = "symlink" }
+
+# Daily mise self-update + global tool upgrade on Linux. A timer entry cannot
+# carry service directives, so the work lives in a oneshot service that only
+# the timer starts. Applied by `mise bootstrap linux systemd-units apply`.
+[bootstrap.linux.systemd.units.mise-autoupdate]
+description = "mise self-update and global tool upgrade"
+type = "oneshot"
+exec_start = "~/.local/bin/mise-autoupdate"
+start = false
+wanted_by = []
+
+[bootstrap.linux.systemd.units.mise-autoupdate-daily]
+description = "run mise-autoupdate every day"
+on_calendar = "*-*-* 04:17:00"
+persistent = true
+unit = "mise-autoupdate"

@@ -34,7 +34,21 @@ step_run() {
     # Native preview skips hooks, so simulate the targets freed by adoption.
     if [ "${DOTFILES_ADOPT:-0}" = 1 ]; then preview_flags+=(--force); fi
     mise -C "$checkout" bootstrap dotfiles apply "${preview_flags[@]}"
+    if [ "$SETUP_OS" = "macos" ]; then
+      mise -C "$checkout" bootstrap macos launchd-agents apply --dry-run
+    elif [ "$SETUP_OS" = "linux" ]; then
+      mise -C "$checkout" bootstrap linux systemd-units apply --dry-run
+    fi
   else
     mise -C "$checkout" bootstrap dotfiles apply --yes
+    if [ "$SETUP_OS" = "macos" ]; then
+      mise -C "$checkout" bootstrap macos launchd-agents apply --yes
+    elif [ "$SETUP_OS" = "linux" ]; then
+      if systemctl --user show-environment >/dev/null 2>&1; then
+        mise -C "$checkout" bootstrap linux systemd-units apply --yes
+      else
+        log_warn "systemd user manager unavailable; skipping mise-autoupdate timer (enable systemd for WSL)"
+      fi
+    fi
   fi
 }

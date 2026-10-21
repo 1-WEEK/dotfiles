@@ -1,3 +1,14 @@
 [dotfiles]
 "~/.config/mise/config.macos.toml" = { source = "~/.dotfiles/mise/config.macos.toml", mode = "symlink" }
 "~/Library/Application Support/com.mitchellh.ghostty/config.ghostty" = { source = "~/.dotfiles/ghostty/config.ghostty", mode = "symlink" }
+
+# Daily mise self-update + global tool upgrade, independent of whether mise
+# runs. Applied by `mise bootstrap macos launchd-agents apply`.
+[bootstrap.macos.launchd.agents.mise-autoupdate]
+program = "~/.local/bin/mise-autoupdate"
+start_calendar_interval = [{ hour = 4, minute = 17 }]
+process_type = "Background"
+working_directory = "~"
+stdout_path = "~/Library/Logs/mise-autoupdate.log"
+stderr_path = "~/Library/Logs/mise-autoupdate.err.log"
+
